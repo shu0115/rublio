@@ -6,6 +6,23 @@ class GroupsController < ApplicationController
   #-------#
   def index
     @groups = Group.where( user_id: session[:user_id] ).order( "name ASC" ).all
+    @group  = Group.new
+  end
+
+  #--------#
+  # create #
+  #--------#
+  def create
+    group = Group.new( params[:group] )
+    group.user_id = session[:user_id]
+
+    if group.save
+      message = { notice: "グループを作成しました。" }
+    else
+      message = { alert: "グループの作成に失敗しました。" }
+    end
+
+    redirect_to( { action: "index" }, message )
   end
 
   #--------#

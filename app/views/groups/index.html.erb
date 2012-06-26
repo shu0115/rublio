@@ -1,6 +1,20 @@
 
 <h1>Listing groups</h1>
 
+<%# グループ作成フォーム %>
+<%= form_for( :group, url: { action: "create" } ) do |f| %>
+
+  <span class="field">
+    <%= f.label "Group" %>：<%= f.text_field :name %>
+  </span>
+
+  <span class="actions">
+    <%= f.submit "Add", "data-disable-with" => "Add" %>
+  </span>
+<% end %>
+
+<br />
+
 <table>
   <tr>
     <th>Name</th>
