@@ -49,7 +49,7 @@ class PagesController < ApplicationController
       message = { alert: "ページの作成に失敗しました。" }
     end
 
-    redirect_to( { action: "index", group_id: params[:group_id] }, message )
+    redirect_to( { action: "show", id: page.id }, message )
   end
 
   #--------#
