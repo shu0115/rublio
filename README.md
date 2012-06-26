@@ -6,7 +6,7 @@ Rublio is Information Library System.
 
 ### GitHub上でFork
 
-    https://github.com/shu0115/rublio
+https://github.com/shu0115/rublio
 
 ### リポジトリをローカルへ作成
 
