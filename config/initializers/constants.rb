@@ -17,4 +17,3 @@ end
 
 # アプリケーション名
 APP_NAME = "Rublio"
-

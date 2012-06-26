@@ -1,0 +1,18 @@
+
+<p>
+  <b><%= link_to( @page.group.try(:name), action: "index", group_id: @page.group.try(:id) ) %></b>
+  => <b><%= @page.title %></b>
+</p>
+
+<hr />
+<%= raw show_markdown( @page.content ) %>
+<hr />
+
+<br />
+
+<% if @page.group.is_owner?( session[:user_id] ) %>
+  <%= link_to t( "menu.edit", default: "Edit" ), action: "edit", id: @page.id %>
+   |
+<% end %>
+
+<%= link_to t( "menu.list", default: "List" ), action: "index" %>

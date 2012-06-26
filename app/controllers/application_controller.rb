@@ -2,18 +2,18 @@
 class ApplicationController < ActionController::Base
 
   protect_from_forgery
-  
+
   # httpsリダイレクト
   before_filter :ssl_redirect if Rails.env.production?
-  
+
   # 未ログインリダイレクト
   before_filter :authorize
-  
+
   # セッション有効期限延長
   before_filter :reset_session_expires
 
   private
-  
+
   #--------------#
   # ssl_redirect #
   #--------------#
@@ -21,11 +21,11 @@ class ApplicationController < ActionController::Base
   def ssl_redirect
     unless request.env["HTTP_X_FORWARDED_PROTO"].to_s == "https"
       request.env["HTTP_X_FORWARDED_PROTO"] = "https"
-      
+
       redirect_to request.url and return
     end
   end
-  
+
   #-----------#
   # authorize #
   #-----------#
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
+
   #-----------------------#
   # reset_session_expires #
   #-----------------------#
@@ -56,5 +56,18 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user
+
+  #---------------#
+  # show_markdown #
+  #---------------#
+  # Markdown変換
+  def show_markdown( text )
+    html_render = Redcarpet::Render::HTML.new( hard_wrap: true, filter_html: true )
+    markdown = Redcarpet::Markdown.new( html_render, autolink: true, fenced_code_blocks: true, space_after_headers: true )
+
+    return markdown.render( text )
+  end
+
+  helper_method :show_markdown
 
 end

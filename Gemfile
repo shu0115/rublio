@@ -56,3 +56,5 @@ group :development do
   gem 'custom-template'
 end
 
+# For Markdown
+gem 'redcarpet'
