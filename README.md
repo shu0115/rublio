@@ -1,18 +1,18 @@
-# APP_NAME
+# Rublio
 
-APP_DESCRIPTION.
+Rublio is Information Library System.
 
 ## Local Setting
 
 ### GitHub上でFork
 
-    https://github.com/USER_NAME/APP_NAME/
+    https://github.com/shu0115/rublio
 
 ### リポジトリをローカルへ作成
 
     $ cd ~/WORK_DIRECTORY
-    $ git clone git@github.com:YOUR_USER_NAME/APP_NAME.git
-    $ cd APP_NAME
+    $ git clone git@github.com:YOUR_USER_NAME/rublio.git
+    $ cd rublio
 
 ### ブランチ作成
 
@@ -39,14 +39,14 @@ Create: config/initializers/local_setting.rb
     ENV['TWITTER_KEY'] = "YOUR_CONSUMER_KEY"
     ENV['TWITTER_SECRET'] = "YOUR_CONSUMER_SECRET"
 
-※Twitterアプリ登録完了後に表示された「Consumer key」を「YOUR_CONSUMER_KEY」に、「Consumer secret」を「YOUR\_CONSUMER_SECRET」にそれぞれ入力
+※Twitterアプリ登録完了後に表示された「Consumer key」を「YOUR_CONSUMER_KEY」に、「Consumer secret」を「YOUR_CONSUMER_SECRET」にそれぞれ入力
 
 ### Rails起動
 
 Gemインストール
 
     bundle install --without production
-  
+
 ローカルDB作成
 
     rake db:migrate
@@ -61,4 +61,4 @@ Gemインストール
 
 ## Copyright
 
-Copyright (c) 2012 MY_NAME. <a href="http://creativecommons.org/licenses/by-nc-sa/2.1/jp/" target="_blank">CC BY-NC-SA 2.1</a>
+Copyright (c) 2012 Shun Matsumoto. <a href="http://creativecommons.org/licenses/by-nc-sa/2.1/jp/" target="_blank">CC BY-NC-SA 2.1</a>

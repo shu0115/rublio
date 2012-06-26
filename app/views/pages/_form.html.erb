@@ -11,6 +11,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit t( "menu.#{@submit}", default: @submit ), disable_with: t( "menu.#{@submit}", default: @submit ) %>
+    <%= f.submit t( "menu.#{@submit}", default: @submit ), "data-disable-with" => t( "menu.#{@submit}", default: @submit ) %>
   </div>
 <% end %>
