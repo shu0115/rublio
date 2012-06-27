@@ -46,6 +46,7 @@ end
 
 # Utility
 gem 'kaminari'
+gem "rails_config"
 
 # For OmniAuth
 gem 'omniauth-twitter'

@@ -69,7 +69,7 @@ module Rublio
     config.assets.version = '1.0'
 
     # For Heroku
-    config.assets.initialize_on_precompile = false
-    RubyPython.configure python_exe: 'python2.6'
+    # config.assets.initialize_on_precompile = false
+    # RubyPython.configure python_exe: 'python2.6'
   end
 end
