@@ -16,6 +16,15 @@ class PagesController < ApplicationController
     @page = Page.where( id: params[:id] ).includes( :group ).first
   end
 
+  #---------#
+  # content #
+  #---------#
+  def content
+    @page = Page.where( id: params[:id] ).includes( :group ).first
+
+    render layout: false
+  end
+
   #-----#
   # new #
   #-----#

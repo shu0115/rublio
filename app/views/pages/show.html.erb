@@ -4,6 +4,8 @@
   => <b><%= @page.title %></b>
 </p>
 
+<p><%= link_to( "content", { action: "content", id: @page.id }, target: "_blank" ) %></p>
+
 <hr />
 <%= raw show_markdown( @page.content ) %>
 <hr />

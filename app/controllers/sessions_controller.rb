@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
 
     # デフォルトグループ作成
-    Group.create_default( user )
+#    Group.create_default( user )
 
     redirect_to :root, notice: "ログインしました。"
   end

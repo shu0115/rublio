@@ -2,7 +2,7 @@ class Group < ActiveRecord::Base
   attr_accessible :name, :user_id, :default_flag
 
   belongs_to :user
-  has_many :pages
+  has_many :pages, :dependent => :delete_all
 
   #-----------#
   # is_owner? #

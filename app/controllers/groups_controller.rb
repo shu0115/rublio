@@ -40,4 +40,14 @@ class GroupsController < ApplicationController
     redirect_to( { action: "index" }, message )
   end
 
+  #---------#
+  # destroy #
+  #---------#
+  def destroy
+    group = Group.where( id: params[:id], user_id: session[:user_id] ).first
+    group.destroy
+
+    redirect_to( action: "index" )
+  end
+
 end
