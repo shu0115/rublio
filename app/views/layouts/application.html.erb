@@ -12,7 +12,7 @@
 <% if current_user %>
   <%# ログイン済み %>
   <%= link_to_unless( current_user.screen_name.blank?, image_tag( current_user.image, size: "20x20" ), "https://twitter.com/#!/#{current_user.screen_name}", target: "_blank" ) %>
-  <%= current_user.name %> :
+  <%= current_user.screen_name %> :
    | <%= link_to "Users", controller: "users", action: "index" %>
    | <%= link_to "MyPages", controller: "users", action: "menu", id: session[:user_id] %>
    | <%= link_to "MyGroups", controller: "groups", action: "index" %>
