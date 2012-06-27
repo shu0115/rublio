@@ -3,5 +3,5 @@ RailsConfig.setup do |config|
 end
 
 # For Heroku
-config.assets.initialize_on_precompile = false
+#config.assets.initialize_on_precompile = false
 RubyPython.configure python_exe: 'python2.6'
