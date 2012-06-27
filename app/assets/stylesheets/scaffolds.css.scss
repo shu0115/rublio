@@ -9,11 +9,17 @@ p, ol, ul, td {
   font-size: 14px;
   line-height: 18px; }
 
+textarea {
+  font-family: "Courier New", "Courier", "Monaco", verdana, arial, helvetica, sans-serif;
+  font-size: 14px;
+}
+
 pre {
   font-family: "Courier New", "Courier", "Monaco", verdana, arial, helvetica, sans-serif;
   background-color: #eee;
   padding: 10px;
-  font-size: 14px; }
+  font-size: 14px;
+}
 
 a {
   color: #000;
