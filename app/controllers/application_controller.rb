@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
   #---------------#
   # Markdown変換
   def show_markdown( text )
-    html_render = HtmlWithPygments.new( hard_wrap: true, filter_html: true )
+    html_render = HtmlWithPygments.new( hard_wrap: true, filter_html: false )
     markdown    = Redcarpet::Markdown.new( html_render, autolink: true, fenced_code_blocks: true, space_after_headers: true )
 
     return markdown.render( text )
