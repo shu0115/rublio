@@ -1,7 +1,7 @@
 
 <p>
   <b><%= link_to( @page.group.try(:name), action: "index", group_id: @page.group.try(:id) ) %></b>
-  => <b><%= @page.title %></b>
+  => <b><%= link_to( @page.title, action: "show", id: @page.id ) %></b>
 </p>
 
 <p><%= link_to( "content", { action: "content", id: @page.id }, target: "_blank" ) %></p>
