@@ -1,7 +1,28 @@
 
 <h1>Editing page</h1>
 
-<%= render 'form' %>
+<%#= render 'form' %>
+<%= form_for( :page, url: { action: "update", id: @page.try(:id), group_id: @group_id } ) do |f| %>
+
+  <div class="field">
+    <%= f.label :group_id %><br />
+    <%= f.select :group_id, @groups.map{ |g| [g.name, g.id] }, selected: @page.group_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content, cols: 130, rows: 50 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit t( "menu.update", default: "update" ), "data-disable-with" => t( "menu.update", default: "update" ) %>
+  </div>
+<% end %>
 
 <%= link_to t( "menu.show", default: "Show" ), action: "show", id: @page.id %>
  | <%= link_to t( "menu.list", default: "List" ), action: "index", group_id: @page.group.try(:id) %>

@@ -1,0 +1,49 @@
+
+<br />
+
+<% if @user.id == session[:user_id] %>
+  <%# グループ作成フォーム %>
+  <%= form_for( :group, url: { action: "create_group" } ) do |f| %>
+
+    <span class="field">
+      <%= f.label "Group" %>：<%= f.text_field :name %>
+    </span>
+
+    <span class="actions">
+      <%= f.submit "Add", "data-disable-with" => "Add" %>
+    </span>
+  <% end %>
+
+  <br />
+<% end %>
+
+<%# グループページ内リンク %>
+<% @groups.each{ |group| %>
+  <%= link_to( group.name, "#group_#{group.id}" ) %>
+<% } %>
+
+<br />
+<br />
+
+<%= link_to_unless( @user.image.blank?, image_tag( @user.image, size: "20x20" ), "https://twitter.com/#!/#{@user.screen_name}", target: "_blank", title: @user.screen_name ) %>
+：<%= @user.screen_name %>
+
+<br />
+
+<%# グループ一覧 %>
+<% @groups.each{ |group| %>
+<ul id="group_<%= group.id %>">
+  <li><h3><%= link_to( group.name, controller: "pages", group_id: group.id ) %> <%= link_to( "+", controller: "pages", action: "new", group_id: group.id ) %></h3></li>
+
+  <ul>
+    <% group.pages.each{ |page| %>
+      <li><%= link_to( page.title, controller: "pages", action: "show", id: page.id ) %></h3></li>
+    <% } %>
+  </ul>
+</ul>
+<% } %>
+
+<br />
+<br />
+
+<%= link_to t( "menu.top", default: "Top" ), :root %>

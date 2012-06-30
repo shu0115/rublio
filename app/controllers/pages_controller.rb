@@ -29,10 +29,11 @@ class PagesController < ApplicationController
   # new #
   #-----#
   def new
-    @group_id = params[:group_id]
+    @group = Group.where( id: params[:group_id], user_id: session[:user_id] ).first
+    @group_id = @group.id
     @page = Page.new
 
-    @submit = "create"
+#    @submit = "create"
   end
 
   #------#
@@ -40,8 +41,9 @@ class PagesController < ApplicationController
   #------#
   def edit
     @page = Page.where( id: params[:id], user_id: session[:user_id] ).first
+    @groups = Group.where( user_id: session[:user_id] ).order( "name ASC" ).all
 
-    @submit = "update"
+#    @submit = "update"
   end
 
   #--------#

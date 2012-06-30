@@ -10,7 +10,21 @@
 
 <body>
 
+<%= "Created #{@page.created_at.strftime("%Y/%m/%d")}, Updated #{@page.updated_at.strftime("%Y/%m/%d")}" %>
+
+<hr />
+
 <%= raw show_markdown( @page.content ) %>
+
+<hr />
+
+<br />
+
+<%= link_to t( "menu.list", default: "List" ), action: "index", group_id: @page.group.try(:id) %>
+
+<br />
+<br />
+<br />
 
 </body>
 

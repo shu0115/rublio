@@ -8,10 +8,10 @@ class UsersController < ApplicationController
     @users = User.order( "id DESC" ).page( params[:page] ).per( 500 ).all
   end
 
-  #------#
-  # menu #
-  #------#
-  def menu
+  #---------#
+  # library #
+  #---------#
+  def library
     @user = User.where( id: params[:id] ).first
 
     @groups = Group.where( user_id: @user.id ).includes( :pages ).order( "groups.name ASC, pages.title ASC" ).all

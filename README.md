@@ -33,11 +33,11 @@ https://github.com/shu0115/rublio
 
 ### ローカル用Twitterキー設定
 
-Create: config/initializers/local_setting.rb
+Create: config/settings.local.yml
 
     # Twitter OAuth Local Setting
-    ENV['TWITTER_KEY'] = "YOUR_CONSUMER_KEY"
-    ENV['TWITTER_SECRET'] = "YOUR_CONSUMER_SECRET"
+    twitter_key:    "YOUR_CONSUMER_KEY"
+    twitter_secret: "YOUR_CONSUMER_SECRET"
 
 ※Twitterアプリ登録完了後に表示された「Consumer key」を「YOUR_CONSUMER_KEY」に、「Consumer secret」を「YOUR_CONSUMER_SECRET」にそれぞれ入力
 

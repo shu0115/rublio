@@ -10,7 +10,7 @@
 <% @users.each{ |user| %>
   <tr>
     <td align="center"><%= link_to_unless( user.image.blank?, image_tag( user.image, size: "20x20" ), "https://twitter.com/#!/#{user.screen_name}", target: "_blank", title: user.screen_name ) %></td>
-    <td><%= link_to( user.screen_name, controller: "users", action: "menu", id: user.id ) %></td>
+    <td><%= link_to( user.screen_name, controller: "users", action: "library", id: user.id ) %></td>
   </tr>
 <% } %>
 </table>
