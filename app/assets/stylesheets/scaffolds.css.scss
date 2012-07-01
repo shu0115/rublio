@@ -1,7 +1,7 @@
 body {
   background-color: #fff;
   color: #333;
-  font-family: monospace, verdana, arial, helvetica, sans-serif;
+  font-family: Courier, monospace, verdana, arial, helvetica, sans-serif;
   font-size: 14px;
   line-height: 18px; }
 
@@ -9,16 +9,14 @@ p, ol, ul, td {
   font-size: 14px;
   line-height: 18px; }
 
-textarea {
-  font-family: "Courier New", "Courier", "Monaco", verdana, arial, helvetica, sans-serif;
+textarea, pre {
+  font-family: Courier;
   font-size: 14px;
 }
 
 pre {
-  font-family: "Courier New", "Courier", "Monaco", verdana, arial, helvetica, sans-serif;
   background-color: #eee;
   padding: 10px;
-  font-size: 14px;
 }
 
 a {
