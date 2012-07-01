@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       message = { alert: "グループの作成に失敗しました。" }
     end
 
-    redirect_to( { action: "menu", id: session[:user_id] }, message )
+    redirect_to( { action: "library", id: session[:user_id] }, message )
   end
 
 end
