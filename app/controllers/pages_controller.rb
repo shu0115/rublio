@@ -60,8 +60,8 @@ class PagesController < ApplicationController
       message = { alert: "ページの作成に失敗しました。" }
     end
 
-#    redirect_to( { action: "show", id: page.id }, message )
-    redirect_to( { controller: "users", action: "library", id: session[:user_id], anchor: "group_#{page.group_id}" }, message )
+    redirect_to( { action: "show", id: page.id }, message )
+#    redirect_to( { controller: "users", action: "library", id: session[:user_id], anchor: "group_#{page.group_id}" }, message )
   end
 
   #--------#
