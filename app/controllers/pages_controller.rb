@@ -60,7 +60,8 @@ class PagesController < ApplicationController
       message = { alert: "ページの作成に失敗しました。" }
     end
 
-    redirect_to( { action: "show", id: page.id }, message )
+#    redirect_to( { action: "show", id: page.id }, message )
+    redirect_to( { controller: "users", action: "library", id: session[:user_id] }, message )
   end
 
   #--------#
@@ -75,7 +76,8 @@ class PagesController < ApplicationController
       message = { alert: "ページの更新に失敗しました。" }
     end
 
-    redirect_to( { action: "show", id: page.id }, message )
+#    redirect_to( { action: "show", id: page.id }, message )
+    redirect_to( { controller: "users", action: "library", id: session[:user_id] }, message )
   end
 
   #---------#
@@ -85,7 +87,8 @@ class PagesController < ApplicationController
     page = Page.where( id: params[:id], user_id: session[:user_id] ).first
     page.destroy
 
-    redirect_to( action: "index" )
+#    redirect_to( action: "index" )
+    redirect_to( controller: "users", action: "library", id: session[:user_id] )
   end
 
 end

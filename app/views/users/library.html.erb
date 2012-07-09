@@ -33,11 +33,21 @@
 <%# グループ一覧 %>
 <% @groups.each{ |group| %>
 <ul id="group_<%= group.id %>">
-  <li><h3><%= link_to( group.name, controller: "pages", group_id: group.id ) %> <%= link_to( "+", controller: "pages", action: "new", group_id: group.id ) %></h3></li>
+  <li>
+    <h3><%= link_to( group.name, controller: "pages", group_id: group.id ) %> <% if group.is_owner?( session[:user_id] ) %><%= link_to( "+", controller: "pages", action: "new", group_id: group.id ) %><% end %></h3>
+  </li>
 
   <ul>
+    <%# ページ一覧 %>
     <% group.pages.each{ |page| %>
-      <li><%= link_to( page.title, controller: "pages", action: "show", id: page.id ) %></h3></li>
+      <li>
+        <%= link_to( page.title, controller: "pages", action: "show", id: page.id ) %>
+        <%= link_to( "C", controller: "pages", action: "content", id: page.id ) %>
+        <% if group.is_owner?( session[:user_id] ) %>
+          <%= link_to( "E", controller: "pages", action: "edit", id: page.id ) %>
+          <%= link_to( "D", { controller: "pages", action: "destroy", id: page.id }, data: { confirm: "「#{page.title}」を削除します。よろしいですか？" } ) %>
+        <% end %>
+      </li>
     <% } %>
   </ul>
 </ul>
