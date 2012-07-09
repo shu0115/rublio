@@ -61,7 +61,7 @@ class PagesController < ApplicationController
     end
 
 #    redirect_to( { action: "show", id: page.id }, message )
-    redirect_to( { controller: "users", action: "library", id: session[:user_id] }, message )
+    redirect_to( { controller: "users", action: "library", id: session[:user_id], anchor: "group_#{page.group_id}" }, message )
   end
 
   #--------#
@@ -77,7 +77,7 @@ class PagesController < ApplicationController
     end
 
 #    redirect_to( { action: "show", id: page.id }, message )
-    redirect_to( { controller: "users", action: "library", id: session[:user_id] }, message )
+    redirect_to( { controller: "users", action: "library", id: session[:user_id], anchor: "group_#{page.group_id}" }, message )
   end
 
   #---------#
@@ -88,7 +88,7 @@ class PagesController < ApplicationController
     page.destroy
 
 #    redirect_to( action: "index" )
-    redirect_to( controller: "users", action: "library", id: session[:user_id] )
+    redirect_to( controller: "users", action: "library", id: session[:user_id], anchor: "group_#{page.group_id}" )
   end
 
 end
