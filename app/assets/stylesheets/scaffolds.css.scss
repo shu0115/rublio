@@ -5,9 +5,16 @@ body {
   font-size: 14px;
   line-height: 18px; }
 
-p, ol, ul, td {
+ol, ul, td {
   font-size: 14px;
-  line-height: 18px; }
+  line-height: 18px;
+}
+
+p, li {
+  font-size: 14px;
+  line-height: 16px;
+  margin: 5px 0px;
+}
 
 textarea, pre {
   font-family: Courier;

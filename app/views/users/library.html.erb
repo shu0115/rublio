@@ -19,7 +19,7 @@
 
 <%# グループページ内リンク %>
 <% @groups.each{ |group| %>
-  <%= link_to( group.name, "#group_#{group.id}" ) %><br />
+  <p><%= link_to( group.name, "#group_#{group.id}" ) %></p>
 <% } %>
 
 <br />
@@ -34,7 +34,7 @@
 <% @groups.each{ |group| %>
 <ul id="group_<%= group.id %>">
   <li>
-    <h3><%= link_to( group.name, controller: "pages", group_id: group.id ) %> <% if group.is_owner?( session[:user_id] ) %><%= link_to( "+", controller: "pages", action: "new", group_id: group.id ) %><% end %></h3>
+    <h2 style="display: inline;"><%= link_to( group.name, controller: "pages", group_id: group.id ) %></h2> <% if group.is_owner?( session[:user_id] ) %><%= link_to( "+", controller: "pages", action: "new", group_id: group.id ) %><% end %><br /><br />
   </li>
 
   <ul>
@@ -50,6 +50,8 @@
       </li>
     <% } %>
   </ul>
+
+  <br />
 </ul>
 <% } %>
 
