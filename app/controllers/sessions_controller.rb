@@ -9,8 +9,12 @@ class SessionsController < ApplicationController
     user = User.where( provider: auth["provider"], uid: auth["uid"] ).first || User.create_with_omniauth( auth )
     session[:user_id] = user.id
 
-    # デフォルトグループ作成
-#    Group.create_default( user )
+    # 保管URLへリダイレクト
+    unless session[:request_url].blank?
+      redirect_to session[:request_url]
+      session[:request_url] = nil
+      return
+    end
 
     redirect_to :root, notice: "ログインしました。"
   end

@@ -41,7 +41,9 @@
   <ul>
     <%# ページ一覧 %>
     <% group.pages.each{ |page| %>
+      <% if page.show_range_ok?( session[:user_id], group ) %>
       <li>
+        <span class="rage_<%= page.show_range %>">[<%= page.show_range %>]</span>
         <%= link_to( page.title, controller: "pages", action: "show", id: page.id ) %>
         <%= link_to( "C", controller: "pages", action: "content", id: page.id ) %>
         <% if group.is_owner?( session[:user_id] ) %>
@@ -49,11 +51,11 @@
           <%= link_to( "D", { controller: "pages", action: "destroy", id: page.id }, data: { confirm: "「#{page.title}」を削除します。よろしいですか？" } ) %>
         <% end %>
       </li>
+      <% end %>
     <% } %>
   </ul>
-
-  <br />
 </ul>
+<br />
 <% } %>
 
 <br />

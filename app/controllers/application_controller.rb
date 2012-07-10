@@ -31,10 +31,14 @@ class ApplicationController < ActionController::Base
   #-----------#
   # ログイン認証
   def authorize
+    print "[ session[:request_url] ] : " ; p session[:request_url] ;
     # セッション／トップコントローラ以外で
     if params[:controller] != "sessions" and params[:controller] != "top"
       # 未ログインであればルートヘリダイレクト
       if session[:user_id].blank?
+        # リクエストURL保管
+        session[:request_url] = request.url
+
         redirect_to :root and return
       end
     end

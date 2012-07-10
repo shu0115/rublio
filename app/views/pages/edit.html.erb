@@ -15,6 +15,12 @@
   </div>
 
   <div class="field">
+    <%= f.radio_button :show_range , "private" %><%= f.label :show_range_private, "Private" %>
+    <%= f.radio_button :show_range , "group" %><%= f.label :show_range_group, "Group" %>
+    <%= f.radio_button :show_range , "public" %><%= f.label :show_range_public, "Public" %>
+  </div>
+
+  <div class="field">
     <%= f.label :content %><br />
     <%= f.text_area :content, cols: 130, rows: 50, wrap: "off" %>
   </div>

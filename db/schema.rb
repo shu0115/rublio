@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120626072738) do
+ActiveRecord::Schema.define(:version => 20120710035047) do
 
   create_table "groups", :force => true do |t|
     t.integer  "user_id"
@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(:version => 20120626072738) do
     t.integer  "group_id"
     t.string   "title"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.string   "show_range", :default => "private"
   end
 
   create_table "users", :force => true do |t|

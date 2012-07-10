@@ -4,6 +4,8 @@
   => <b><%= link_to( @page.title, action: "show", id: @page.id ) %></b>
 </p>
 
+<p class="rage_<%= @page.show_range %>">[<%= @page.show_range %>]</p>
+
 <p><%= link_to( "content", { action: "content", id: @page.id }, target: "_blank" ) %></p>
 
 <% if @page.group.is_owner?( session[:user_id] ) %>

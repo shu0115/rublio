@@ -14,6 +14,9 @@ class PagesController < ApplicationController
   #------#
   def show
     @page = Page.where( id: params[:id] ).includes( :group ).first
+
+    # 公開範囲チェック
+    redirect_to( :root, alert: "閲覧権限がありません。" ) and return unless @page.show_range_ok?( session[:user_id], @page.group )
   end
 
   #---------#
@@ -21,6 +24,9 @@ class PagesController < ApplicationController
   #---------#
   def content
     @page = Page.where( id: params[:id] ).includes( :group ).first
+
+    # 公開範囲チェック
+    redirect_to( :root, alert: "閲覧権限がありません。" ) and return unless @page.show_range_ok?( session[:user_id], @page.group )
 
     render layout: false
   end
@@ -32,8 +38,6 @@ class PagesController < ApplicationController
     @group = Group.where( id: params[:group_id], user_id: session[:user_id] ).first
     @group_id = @group.id
     @page = Page.new
-
-#    @submit = "create"
   end
 
   #------#
@@ -42,8 +46,6 @@ class PagesController < ApplicationController
   def edit
     @page = Page.where( id: params[:id], user_id: session[:user_id] ).first
     @groups = Group.where( user_id: session[:user_id] ).order( "name ASC" ).all
-
-#    @submit = "update"
   end
 
   #--------#
@@ -61,7 +63,6 @@ class PagesController < ApplicationController
     end
 
     redirect_to( { action: "show", id: page.id }, message )
-#    redirect_to( { controller: "users", action: "library", id: session[:user_id], anchor: "group_#{page.group_id}" }, message )
   end
 
   #--------#
@@ -77,7 +78,6 @@ class PagesController < ApplicationController
     end
 
     redirect_to( { action: "show", id: page.id }, message )
-#    redirect_to( { controller: "users", action: "library", id: session[:user_id], anchor: "group_#{page.group_id}" }, message )
   end
 
   #---------#
@@ -87,7 +87,6 @@ class PagesController < ApplicationController
     page = Page.where( id: params[:id], user_id: session[:user_id] ).first
     page.destroy
 
-#    redirect_to( action: "index" )
     redirect_to( controller: "users", action: "library", id: session[:user_id], anchor: "group_#{page.group_id}" )
   end
 
