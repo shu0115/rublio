@@ -61,3 +61,6 @@ end
 gem 'redcarpet'
 gem "pygments.rb"          # => 0.2.3
 gem "rubypython", "0.5.1"  # For Heroku
+
+# For EventMachine
+gem 'eventmachine'

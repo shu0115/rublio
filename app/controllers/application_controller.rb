@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
   # セッション有効期限延長
   before_filter :reset_session_expires
 
+  # Heroku用延命処置
+  before_filter :heroku_periodic_access
+
   private
 
   #--------------#
@@ -31,7 +34,6 @@ class ApplicationController < ActionController::Base
   #-----------#
   # ログイン認証
   def authorize
-    print "[ session[:request_url] ] : " ; p session[:request_url] ;
     # セッション／トップコントローラ以外で
     if params[:controller] != "sessions" and params[:controller] != "top"
       # 未ログインであればルートヘリダイレクト
@@ -50,6 +52,19 @@ class ApplicationController < ActionController::Base
   # セッション期限延長
   def reset_session_expires
     request.session_options[:expire_after] = 2.weeks
+  end
+
+  #------------------------#
+  # heroku_periodic_access #
+  #------------------------#
+  # Heroku用延命処置
+  def heroku_periodic_access
+    EM.run do
+      # 1分周期
+      EM.add_periodic_timer(60) do
+        puts "[ #{Time.now.strftime("%Y/%m/%d %H:%M:%S")} Lengthen... ]"
+      end
+    end
   end
 
   #--------------#

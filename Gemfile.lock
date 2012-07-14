@@ -140,6 +140,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   custom-template
+  eventmachine
   jquery-rails
   kaminari
   newrelic_rpm

@@ -14,33 +14,33 @@
 ActiveRecord::Schema.define(:version => 20120710035047) do
 
   create_table "groups", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.boolean  "default_flag", :default => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.integer   "user_id"
+    t.string    "name"
+    t.boolean   "default_flag", :default => false
+    t.timestamp "created_at",                      :null => false
+    t.timestamp "updated_at",                      :null => false
   end
 
   create_table "pages", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "group_id"
-    t.string   "title"
-    t.text     "content"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.string   "show_range", :default => "private"
+    t.integer   "user_id"
+    t.integer   "group_id"
+    t.string    "title"
+    t.text      "content"
+    t.timestamp "created_at",                        :null => false
+    t.timestamp "updated_at",                        :null => false
+    t.string    "show_range", :default => "private"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "name"
-    t.string   "screen_name"
-    t.string   "image"
-    t.string   "token"
-    t.string   "secret"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string    "provider"
+    t.string    "uid"
+    t.string    "name"
+    t.string    "screen_name"
+    t.string    "image"
+    t.string    "token"
+    t.string    "secret"
+    t.timestamp "created_at",  :null => false
+    t.timestamp "updated_at",  :null => false
   end
 
 end
