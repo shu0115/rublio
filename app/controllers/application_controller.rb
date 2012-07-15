@@ -58,12 +58,27 @@ class ApplicationController < ActionController::Base
   # heroku_periodic_access #
   #------------------------#
   # Heroku用延命処置
+  $timer_arry = Array.new
+
   def heroku_periodic_access
+    $timer_arry.each{ |timer|
+      # タイマーキャンセル
+      result = timer.cancel
+
+      # タイマー削除
+      if result == true
+        $timer_arry.delete( timer )
+      end
+    }
+
     EM.run do
       # 1分周期
-      EM.add_periodic_timer(60) do
+      result = EM.add_periodic_timer(10) do
         puts "[ #{Time.now.strftime("%Y/%m/%d %H:%M:%S")} Lengthen... ]"
       end
+
+      # タイマー保管
+      $timer_arry.push( result )
     end
   end
 

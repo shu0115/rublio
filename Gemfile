@@ -64,3 +64,6 @@ gem "rubypython", "0.5.1"  # For Heroku
 
 # For EventMachine
 gem 'eventmachine'
+
+gem 'tapp'
+
