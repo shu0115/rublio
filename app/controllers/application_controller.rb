@@ -12,9 +12,6 @@ class ApplicationController < ActionController::Base
   # セッション有効期限延長
   before_filter :reset_session_expires
 
-  # Heroku用延命処置
-  before_filter :heroku_periodic_access
-
   private
 
   #--------------#
@@ -52,34 +49,6 @@ class ApplicationController < ActionController::Base
   # セッション期限延長
   def reset_session_expires
     request.session_options[:expire_after] = 2.weeks
-  end
-
-  #------------------------#
-  # heroku_periodic_access #
-  #------------------------#
-  # Heroku用延命処置
-  $timer_arry = Array.new
-
-  def heroku_periodic_access
-    $timer_arry.each{ |timer|
-      # タイマーキャンセル
-      result = timer.cancel
-
-      # タイマー削除
-      if result == true
-        $timer_arry.delete( timer )
-      end
-    }
-
-    EM.run do
-      # 1分周期
-      result = EM.add_periodic_timer(10) do
-        puts "[ #{Time.now.strftime("%Y/%m/%d %H:%M:%S")} Lengthen... ]"
-      end
-
-      # タイマー保管
-      $timer_arry.push( result )
-    end
   end
 
   #--------------#
