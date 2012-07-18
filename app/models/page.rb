@@ -18,8 +18,8 @@ class Page < ActiveRecord::Base
   #----------------#
   # ページ公開判定
   def show_range_ok?( user_id, group )
-    print "[ self ] : " ; p self ;
-    return false if self.nil?
+    print "[ self.show_range ] : " ; p self.show_range;
+#    return false if self.nil?
 
     case self.show_range
     when "private"
