@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     group.user_id = session[:user_id]
 
     if group.save
+      GroupMember.create( group_id: group.id, user_id: group.user_id )
       message = { notice: "グループを作成しました。" }
     else
       message = { alert: "グループの作成に失敗しました。" }
@@ -34,4 +35,13 @@ class UsersController < ApplicationController
     redirect_to( { action: "library", id: session[:user_id] }, message )
   end
 
+  #--------------#
+  # delete_group #
+  #--------------#
+  def delete_group
+    group = Group.where( id: params[:id], user_id: session[:user_id] ).first
+    group.destroy
+
+    redirect_to( action: "library", id: session[:user_id] )
+  end
 end

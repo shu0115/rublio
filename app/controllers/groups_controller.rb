@@ -1,6 +1,7 @@
 # coding: utf-8
 class GroupsController < ApplicationController
 
+=begin
   #-------#
   # index #
   #-------#
@@ -8,12 +9,17 @@ class GroupsController < ApplicationController
     @groups = Group.where( user_id: session[:user_id] ).order( "name ASC" ).all
     @group  = Group.new
   end
+=end
 
   #---------#
   # members #
   #---------#
   def members
-    @group = Group.where( id: params[:id] ).includes( :users ).order( "group_members.created_at ASC" ).first
+    @group = Group.where( id: params[:id], user_id: session[:user_id] ).includes( :users ).order( "group_members.created_at ASC" ).first
+
+    if @group.blank?
+      redirect_to( :root, alert: "該当するグループがありません。" ) and return
+    end
   end
 
   #-------------#
@@ -71,6 +77,7 @@ class GroupsController < ApplicationController
     @group = Group.where( id: params[:id] ).first
   end
 
+=begin
   #--------#
   # create #
   #--------#
@@ -79,6 +86,7 @@ class GroupsController < ApplicationController
     group.user_id = session[:user_id]
 
     if group.save
+      GroupMember.create( group_id: group.id, user_id: group.user_id )
       message = { notice: "グループを作成しました。" }
     else
       message = { alert: "グループの作成に失敗しました。" }
@@ -86,6 +94,7 @@ class GroupsController < ApplicationController
 
     redirect_to( { action: "index" }, message )
   end
+=end
 
   #------#
   # edit #
@@ -109,6 +118,7 @@ class GroupsController < ApplicationController
     redirect_to( { action: "show", id: group.id }, message )
   end
 
+=begin
   #---------#
   # destroy #
   #---------#
@@ -118,5 +128,6 @@ class GroupsController < ApplicationController
 
     redirect_to( action: "index" )
   end
+=end
 
 end

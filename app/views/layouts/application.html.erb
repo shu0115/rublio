@@ -15,7 +15,7 @@
   <%= current_user.screen_name %> :
    | <%= link_to "Users", controller: "users", action: "index" %>
    | <%= link_to "MyPages", controller: "users", action: "library", id: session[:user_id] %>
-   | <%= link_to "MyGroups", controller: "groups", action: "index" %>
+  <% if false %> | <%= link_to "MyGroups", controller: "groups", action: "index" %><% end %>
    || <%= link_to "Logout", logout_path %>
 <% else %>
   <%# 未ログイン %>

@@ -31,7 +31,7 @@
   <tr>
     <td><%= user.screen_name %></td>
     <td><%= user.name %></td>
-    <td><%= link_to( t( "menu.destroy" ), { action: "delete_member", group_id: @group.id, user_id: user.id }, data: { confirm: "「#{user.screen_name}」を削除します。よろしいですか？" } ) %></td>
+    <td><%= @group.is_owner?( user.id ) ? "" : link_to( t( "menu.destroy" ), { action: "delete_member", group_id: @group.id, user_id: user.id }, data: { confirm: "「#{user.screen_name}」を削除します。よろしいですか？" } ) %></td>
   </tr>
 <% } %>
 </table>
@@ -39,4 +39,4 @@
 <br />
 <br />
 
-<%= link_to( t( "menu.top" ), :root ) %>
+<%= link_to t( "menu.top" ), controller: "users", action: "library", id: @group.user_id, anchor: "group_#{@group.id}" %>
