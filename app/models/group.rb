@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-  attr_accessible :name, :user_id, :default_flag
+  attr_accessible :name, :user_id, :default_flag, :permission
 
   belongs_to :user
   has_many :pages, :dependent => :delete_all
@@ -9,6 +9,25 @@ class Group < ActiveRecord::Base
   #-----------#
   def is_owner?( user_id )
     return true if self.user_id == user_id
+    return false
+  end
+
+  #----------------#
+  # permission_ok? #
+  #----------------#
+  # ページ公開判定
+  def permission_ok?( user_id )
+    case self.permission
+    when "private"
+      return true if self.user_id == user_id
+    when "group"
+      return true if self.user_id == user_id
+    when "public"
+      return true
+    else
+      return false
+    end
+
     return false
   end
 

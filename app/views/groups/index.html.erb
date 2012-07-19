@@ -21,6 +21,7 @@
     <th>Edit</th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @groups.each{ |group| %>
@@ -29,7 +30,8 @@
     <td><%= group.name %></td>
     <td><%= f.text_field :name %></td>
     <td><%= f.submit( "Update", "data-disable-with" => "Update" ) %></td>
-    <td><%= link_to( t( "menu.destroy", default: "Delete" ), { action: "destroy", id: group.id }, data: { confirm: "「#{group.name}」を削除します。よろしいですか？(紐付くPageも削除されます。)" } ) %></td>
+    <td><%= link_to( t( "menu.edit" ), { action: "edit", id: group.id } ) %></td>
+    <td><%= link_to( t( "menu.destroy" ), { action: "destroy", id: group.id }, data: { confirm: "「#{group.name}」を削除します。よろしいですか？(紐付くPageも削除されます。)" } ) %></td>
   </tr>
   <% end %>
 <% } %>

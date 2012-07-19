@@ -1,5 +1,5 @@
 class Page < ActiveRecord::Base
-  attr_accessible :content, :group_id, :title, :user_id, :show_range
+  attr_accessible :content, :group_id, :title, :user_id, :permission
 
   belongs_to :user
   belongs_to :group
@@ -14,11 +14,11 @@ class Page < ActiveRecord::Base
   end
 
   #----------------#
-  # show_range_ok? #
+  # permission_ok? #
   #----------------#
   # ページ公開判定
-  def show_range_ok?( user_id, group )
-    case self.show_range
+  def permission_ok?( user_id, group )
+    case self.permission
     when "private"
       return true if self.user_id == user_id
     when "group"

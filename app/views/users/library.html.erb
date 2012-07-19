@@ -33,17 +33,23 @@
 
 <%# グループ一覧 %>
 <% @groups.each{ |group| %>
+<% if group.permission_ok?( session[:user_id] ) %>
 <ul id="group_<%= group.id %>">
+  <%# グループ名 %>
   <li>
-    <h2 style="display: inline;"><%= link_to( group.name, controller: "pages", group_id: group.id ) %></h2> <% if group.is_owner?( session[:user_id] ) %><%= link_to( "+", controller: "pages", action: "new", group_id: group.id ) %><% end %><br /><br />
+    <h2 style="display: inline;"><%= link_to( group.name, controller: "pages", group_id: group.id ) %></h2>
+    <% if group.is_owner?( session[:user_id] ) %><%= link_to( "+", { controller: "pages", action: "new", group_id: group.id }, target: "_blank" ) %><% end %>
+    <% if group.is_owner?( session[:user_id] ) %><%= link_to( "E", { controller: "groups", action: "edit", id: group.id } ) %><% end %>
+    <span class="rage_<%= group.permission %>">[<%= group.permission %>]</span>
+    <br /><br />
   </li>
 
   <ul>
     <%# ページ一覧 %>
     <% group.pages.each{ |page| %>
-      <% if page.show_range_ok?( session[:user_id], group ) %>
+      <% if page.permission_ok?( session[:user_id], group ) %>
       <li>
-        <span class="rage_<%= page.show_range %>">[<%= page.show_range %>]</span>
+        <span class="rage_<%= page.permission %>">[<%= page.permission %>]</span>
         <%= link_to( page.title, controller: "pages", action: "show", id: page.id ) %>
         <%= link_to( "C", controller: "pages", action: "content", id: page.id ) %>
         <% if group.is_owner?( session[:user_id] ) %>
@@ -55,6 +61,7 @@
     <% } %>
   </ul>
 </ul>
+<% end %>
 <br />
 <% } %>
 

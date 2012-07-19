@@ -16,7 +16,7 @@ class PagesController < ApplicationController
     @page = Page.where( id: params[:id] ).includes( :group ).first
 
     # 公開範囲チェック
-    redirect_to( :root, alert: "閲覧権限がありません。" ) and return unless @page.show_range_ok?( session[:user_id], @page.group )
+    redirect_to( :root, alert: "閲覧権限がありません。" ) and return unless @page.permission_ok?( session[:user_id], @page.group )
   end
 
   #---------#
@@ -26,7 +26,7 @@ class PagesController < ApplicationController
     @page = Page.where( id: params[:id] ).includes( :group ).first
 
     # 公開範囲チェック
-    redirect_to( :root, alert: "閲覧権限がありません。" ) and return unless @page.show_range_ok?( session[:user_id], @page.group )
+    redirect_to( :root, alert: "閲覧権限がありません。" ) and return unless @page.permission_ok?( session[:user_id], @page.group )
 
     render layout: false
   end

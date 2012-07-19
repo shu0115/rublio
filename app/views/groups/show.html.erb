@@ -1,0 +1,15 @@
+
+<h3><%= @group.name %></h3>
+
+Permission : <%= @group.permission %><br />
+
+<br />
+<br />
+
+<%= link_to t( "menu.edit" ), action: "edit", id: @group.id %>
+<%= link_to t( "menu.list" ), action: "index" %>
+
+<br />
+<br />
+
+<%= link_to t( "menu.top" ), controller: "users", action: "library", id: @group.user_id, anchor: "group_#{@group.id}" %>

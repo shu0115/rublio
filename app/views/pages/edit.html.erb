@@ -1,5 +1,5 @@
 
-<h1>Editing page</h1>
+<h1>Editing Page</h1>
 
 <%#= render 'form' %>
 <%= form_for( :page, url: { action: "update", id: @page.try(:id), group_id: @group_id } ) do |f| %>
@@ -15,9 +15,9 @@
   </div>
 
   <div class="field">
-    <%= f.radio_button :show_range , "private" %><%= f.label :show_range_private, "Private" %>
-    <%= f.radio_button :show_range , "group" %><%= f.label :show_range_group, "Group" %>
-    <%= f.radio_button :show_range , "public" %><%= f.label :show_range_public, "Public" %>
+    <%= f.radio_button :permission , "private" %><%= f.label :permission_private, "Private" %>
+    <%= f.radio_button :permission , "group" %><%= f.label :permission_group, "Group" %>
+    <%= f.radio_button :permission , "public" %><%= f.label :permission_public, "Public" %>
   </div>
 
   <div class="field">

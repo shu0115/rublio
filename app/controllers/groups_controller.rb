@@ -9,6 +9,13 @@ class GroupsController < ApplicationController
     @group  = Group.new
   end
 
+  #------#
+  # show #
+  #------#
+  def show
+    @group = Group.where( id: params[:id] ).first
+  end
+
   #--------#
   # create #
   #--------#
@@ -25,6 +32,13 @@ class GroupsController < ApplicationController
     redirect_to( { action: "index" }, message )
   end
 
+  #------#
+  # edit #
+  #------#
+  def edit
+    @group = Group.where( id: params[:id], user_id: session[:user_id] ).first
+  end
+
   #--------#
   # update #
   #--------#
@@ -37,7 +51,7 @@ class GroupsController < ApplicationController
       message = { alert: "グループ名の更新に失敗しました。" }
     end
 
-    redirect_to( { action: "index" }, message )
+    redirect_to( { action: "show", id: group.id }, message )
   end
 
   #---------#
