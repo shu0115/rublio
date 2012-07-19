@@ -13,3 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(function () {
+  var group_id = document.getElementById('group_id');
+
+  $('#group_group_members').tokenInput(
+    '/groups/member_list.json?group_id=' + group_id.value,
+    {
+      crossDomain: false,
+      prePopulate: $('#group_group_members').data('pre'),
+      theme: 'facebook'
+    }
+  );
+});

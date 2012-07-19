@@ -3,7 +3,9 @@ class User < ActiveRecord::Base
   attr_accessible :provider, :uid, :name, :screen_name, :image, :token, :secret
 
   has_many :pages
-  has_many :groups
+#  has_many :groups
+  has_many :group_members, :dependent => :destroy
+  has_many :groups, :through => :group_members
 
   private
 

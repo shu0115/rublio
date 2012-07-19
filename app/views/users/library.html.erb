@@ -38,8 +38,11 @@
   <%# グループ名 %>
   <li>
     <h2 style="display: inline;"><%= link_to( group.name, controller: "pages", group_id: group.id ) %></h2>
-    <% if group.is_owner?( session[:user_id] ) %><%= link_to( "+", { controller: "pages", action: "new", group_id: group.id }, target: "_blank" ) %><% end %>
-    <% if group.is_owner?( session[:user_id] ) %><%= link_to( "E", { controller: "groups", action: "edit", id: group.id } ) %><% end %>
+    <% if group.is_owner?( session[:user_id] ) %>
+      <%= link_to( "E", { controller: "groups", action: "edit", id: group.id } ) %>
+      <%= link_to( "M", { controller: "groups", action: "members", id: group.id } ) %>
+      <%= link_to( "+", { controller: "pages", action: "new", group_id: group.id }, target: "_blank" ) %>
+    <% end %>
     <span class="rage_<%= group.permission %>">[<%= group.permission %>]</span>
     <br /><br />
   </li>

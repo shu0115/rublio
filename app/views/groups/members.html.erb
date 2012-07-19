@@ -1,0 +1,40 @@
+
+<h1>Listing Members</h1>
+
+<%# メンバー追加フォーム %>
+<%= form_for( :group, url: { action: "add_member" } ) do |f| %>
+  <%= f.hidden_field :id, { value: @group.id } %>
+
+  <div class="field">
+    <%= f.label :group_members %><br />
+    <%#= f.text_field :group_members, value: "", "data-pre" => @members.to_json %>
+    <%= f.text_field :group_members %>
+  </div>
+
+  <span class="actions">
+    <%= f.submit "Add", "data-disable-with" => "Add" %>
+  </span>
+<% end %>
+
+<br />
+
+<h3><%= "#{@group.name} Members" %></h3>
+
+<table>
+  <tr>
+    <th>Screen Name</th>
+    <th>Name</th>
+  </tr>
+
+<% @group.users.each{ |user| %>
+  <tr>
+    <td><%= user.screen_name %></td>
+    <td><%= user.name %></td>
+  </tr>
+<% } %>
+</table>
+
+<br />
+<br />
+
+<%= link_to( t( "menu.top" ), :root ) %>

@@ -1,8 +1,12 @@
 class Group < ActiveRecord::Base
   attr_accessible :name, :user_id, :default_flag, :permission
 
+#  attr_accessor :group_members
+
   belongs_to :user
   has_many :pages, :dependent => :delete_all
+  has_many :group_members, :dependent => :destroy
+  has_many :users, :through => :group_members
 
   #-----------#
   # is_owner? #

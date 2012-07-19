@@ -9,6 +9,48 @@ class GroupsController < ApplicationController
     @group  = Group.new
   end
 
+  #---------#
+  # members #
+  #---------#
+  def members
+    @group = Group.where( id: params[:id] ).includes( :users ).order( "group_members.created_at ASC" ).first
+  end
+
+  #-------------#
+  # member_list #
+  #-------------#
+  def member_list
+    exist_members = GroupMember.where( group_id: params[:group_id] ).pluck(:id)
+    members = User.where( "id NOT IN ( #{exist_members.join(',')} )" ).order( "screen_name ASC" ).limit(100).map{ |u| { id: u.id, name: u.screen_name } }.delete_if{ |x| x[:name].downcase.index(params[:q]).nil? }
+
+    respond_to do |format|
+      format.json { render json: members }
+    end
+  end
+
+  #------------#
+  # add_member #
+  #------------#
+  def add_member
+    group = params[:group]
+
+    if group.blank?
+      redirect_to( { action: "index" }, alert: "グループ情報がありません。" ) and return
+    else
+      user_ids = group[:group_members].split(",")
+
+      if user_ids.blank?
+        redirect_to( { action: "members", id: group[:id] }, alert: "メンバーを入力して下さい。" ) and return
+      end
+
+      user_ids.each{ |user_id|
+        GroupMember.create( group_id: group[:id], user_id: user_id )
+      }
+
+      redirect_to( action: "members", id: group[:id] ) and return
+    end
+  end
+
   #------#
   # show #
   #------#
