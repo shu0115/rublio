@@ -16,11 +16,11 @@
 
 # Add
 .DS_Store
+/log/*.log.*
 /config/initializers/local_setting.rb
-
-config/settings.local.yml
-config/settings/*.local.yml
-config/environments/*.local.yml
+/config/settings.local.yml
+/config/settings/*.local.yml
+/config/environments/*.local.yml
 
 # temporary
 _____*

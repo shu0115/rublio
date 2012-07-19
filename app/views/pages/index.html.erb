@@ -19,7 +19,7 @@
     <td><%= page.group.try(:name) %></td>
     <td><%= page.title %></td>
     <td><%= link_to( t( "menu.show", default: "Show" ), action: "show", id: page.id ) %></td>
-    <% if @group.is_owner?( session[:user_id] ) %>
+    <% if page.is_owner?( session[:user_id] ) %>
     <td><%= link_to( t( "menu.edit", default: "Edit" ), action: "edit", id: page.id ) %></td>
     <td><%= link_to( t( "menu.destroy", default: "Delete" ), { action: "destroy", id: page.id }, data: { confirm: "本当に削除してよろしいですか？" } ) %></td>
     <% end %>

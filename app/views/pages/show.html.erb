@@ -8,7 +8,9 @@
 
 <p><%= link_to( "content", { action: "content", id: @page.id }, target: "_blank" ) %></p>
 
-<% if @page.group.is_owner?( session[:user_id] ) %>
+<br />
+
+<% if @page.edit_ok?( session[:user_id], @page.group ) %>
   <%= link_to t( "menu.edit", default: "Edit" ), action: "edit", id: @page.id %>
    |
 <% end %>
@@ -21,7 +23,7 @@
 
 <br />
 
-<% if @page.group.is_owner?( session[:user_id] ) %>
+<% if @page.edit_ok?( session[:user_id], @page.group ) %>
   <%= link_to t( "menu.edit", default: "Edit" ), action: "edit", id: @page.id %>
    |
 <% end %>

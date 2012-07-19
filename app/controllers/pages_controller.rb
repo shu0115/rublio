@@ -44,7 +44,8 @@ class PagesController < ApplicationController
   # edit #
   #------#
   def edit
-    @page = Page.where( id: params[:id], user_id: session[:user_id] ).first
+#    @page = Page.where( id: params[:id], user_id: session[:user_id] ).first
+    @page = Page.where( id: params[:id] ).includes( :group ).first
     @groups = Group.where( user_id: session[:user_id] ).order( "name ASC" ).all
   end
 
@@ -69,7 +70,12 @@ class PagesController < ApplicationController
   # update #
   #--------#
   def update
-    page = Page.where( id: params[:id], user_id: session[:user_id] ).first
+#    page = Page.where( id: params[:id], user_id: session[:user_id] ).first
+    page = Page.where( id: params[:id] ).includes( :group ).first
+
+    unless page.permission_ok?( session[:user_id], page.group )
+      redirect_to( { action: "show", id: page.id }, "更新権限がありません。" ) and return
+    end
 
     if page.update_attributes( params[:page] )
       message = { notice: "ページを更新しました。" }

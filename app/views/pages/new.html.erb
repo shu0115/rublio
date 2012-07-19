@@ -1,9 +1,8 @@
 
 <h3><%= @group.name %></h3>
 
-<h1>New page</h1>
+<h1>New Page</h1>
 
-<%#= render 'form' %>
 <%= form_for( :page, url: { action: "create", id: @page.try(:id), group_id: @group_id } ) do |f| %>
   <div class="field">
     <%= f.label :title %><br />

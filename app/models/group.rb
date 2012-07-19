@@ -19,13 +19,13 @@ class Group < ActiveRecord::Base
   #----------------#
   # permission_ok? #
   #----------------#
-  # ページ公開判定
+  # グループ閲覧権限
   def permission_ok?( user_id )
     case self.permission
     when "private"
       return true if self.user_id == user_id
     when "group"
-      return true if self.user_id == user_id
+      return true if GroupMember.where( group_id: self.id, user_id: user_id ).exists?
     when "public"
       return true
     else

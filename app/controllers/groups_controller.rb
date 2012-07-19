@@ -70,12 +70,14 @@ class GroupsController < ApplicationController
     redirect_to( action: "members", id: params[:group_id] ) and return
   end
 
+=begin
   #------#
   # show #
   #------#
   def show
     @group = Group.where( id: params[:id] ).first
   end
+=end
 
 =begin
   #--------#
@@ -115,7 +117,7 @@ class GroupsController < ApplicationController
       message = { alert: "グループの更新に失敗しました。" }
     end
 
-    redirect_to( { action: "show", id: group.id }, message )
+    redirect_to( { controller: "users", action: "library", id: session[:user_id], anchor: "group_#{group.id}" }, message )
   end
 
 =begin

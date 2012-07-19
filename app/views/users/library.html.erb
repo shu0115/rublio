@@ -56,8 +56,12 @@
         <span class="rage_<%= page.permission %>">[<%= page.permission %>]</span>
         <%= link_to( page.title, controller: "pages", action: "show", id: page.id ) %>
         <%= link_to( "C", controller: "pages", action: "content", id: page.id ) %>
-        <% if group.is_owner?( session[:user_id] ) %>
+
+        <% if page.edit_ok?( session[:user_id], group ) %>
           <%= link_to( "E", controller: "pages", action: "edit", id: page.id ) %>
+        <% end %>
+
+        <% if page.is_owner?( session[:user_id] ) %>
           <%= link_to( "D", { controller: "pages", action: "destroy", id: page.id }, data: { confirm: "「#{page.title}」を削除します。よろしいですか？" } ) %>
         <% end %>
       </li>
@@ -65,8 +69,8 @@
     <% } %>
   </ul>
 </ul>
-<% end %>
 <br />
+<% end %>
 <% } %>
 
 <br />

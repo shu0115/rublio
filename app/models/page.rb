@@ -16,15 +16,34 @@ class Page < ActiveRecord::Base
   #----------------#
   # permission_ok? #
   #----------------#
-  # ページ公開判定
+  # ページ閲覧権限
   def permission_ok?( user_id, group )
     case self.permission
     when "private"
       return true if self.user_id == user_id
     when "group"
-      return true if group.user_id == user_id
+      return true if GroupMember.where( group_id: group.id, user_id: user_id ).exists?
     when "public"
       return true
+    else
+      return false
+    end
+
+    return false
+  end
+
+  #----------#
+  # edit_ok? #
+  #----------#
+  # ページ編集権限
+  def edit_ok?( user_id, group )
+    case self.permission
+    when "private"
+      return true if self.user_id == user_id
+    when "group"
+      return true if GroupMember.where( group_id: group.id, user_id: user_id ).exists?
+    when "public"
+      return true if self.user_id == user_id
     else
       return false
     end
