@@ -46,9 +46,9 @@ class GroupsController < ApplicationController
     group = Group.where( id: params[:id], user_id: session[:user_id] ).first
 
     if group.update_attributes( params[:group] )
-      message = { notice: "グループ名を更新しました。" }
+      message = { notice: "グループを更新しました。" }
     else
-      message = { alert: "グループ名の更新に失敗しました。" }
+      message = { alert: "グループの更新に失敗しました。" }
     end
 
     redirect_to( { action: "show", id: group.id }, message )
