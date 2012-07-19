@@ -20,11 +20,14 @@ class GroupsController < ApplicationController
   # member_list #
   #-------------#
   def member_list
-    exist_members = GroupMember.where( group_id: params[:group_id] ).pluck(:id)
-    members = User.where( "id NOT IN ( #{exist_members.join(',')} )" ).order( "screen_name ASC" ).limit(100).map{ |u| { id: u.id, name: u.screen_name } }.delete_if{ |x| x[:name].downcase.index(params[:q]).nil? }
+    exist_members = GroupMember.where( group_id: params[:group_id] ).pluck(:user_id)
+
+    users = User.order( "screen_name ASC" )
+    users = users.where( "id NOT IN ( #{exist_members.join(',')} )" ) unless exist_members.blank?
+    users = users.limit(100).map{ |u| { id: u.id, name: u.screen_name } }.delete_if{ |x| x[:name].downcase.index( params[:q] ).nil? }
 
     respond_to do |format|
-      format.json { render json: members }
+      format.json { render json: users }
     end
   end
 
@@ -49,6 +52,16 @@ class GroupsController < ApplicationController
 
       redirect_to( action: "members", id: group[:id] ) and return
     end
+  end
+
+  #---------------#
+  # delete_member #
+  #---------------#
+  def delete_member
+    member = GroupMember.where( group_id: params[:group_id], user_id: params[:user_id] ).first
+    member.destroy
+
+    redirect_to( action: "members", id: params[:group_id] ) and return
   end
 
   #------#

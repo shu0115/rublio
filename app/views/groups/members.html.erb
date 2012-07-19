@@ -24,12 +24,14 @@
   <tr>
     <th>Screen Name</th>
     <th>Name</th>
+    <th></th>
   </tr>
 
 <% @group.users.each{ |user| %>
   <tr>
     <td><%= user.screen_name %></td>
     <td><%= user.name %></td>
+    <td><%= link_to( t( "menu.destroy" ), { action: "delete_member", group_id: @group.id, user_id: user.id }, data: { confirm: "「#{user.screen_name}」を削除します。よろしいですか？" } ) %></td>
   </tr>
 <% } %>
 </table>
