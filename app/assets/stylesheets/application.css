@@ -11,9 +11,3 @@
  *= require_self
  *= require_tree .
  */
-
-textarea {
-  font-family: Courier;
-  font-size: 14px;
-  width: 420px;
-}
