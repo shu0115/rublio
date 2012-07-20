@@ -1,8 +1,7 @@
 
 <h1>Editing Page</h1>
 
-<%#= render 'form' %>
-<%= form_for( :page, url: { action: "update", id: @page.try(:id), group_id: @group_id } ) do |f| %>
+<%= form_for( :page, url: { action: "update", id: @page.try(:id), group_id: @group_id }, class: "form-horizontal" ) do |f| %>
 
   <% if @page.group.is_owner?( session[:user_id] ) %>
   <div class="field">
