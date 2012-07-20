@@ -36,26 +36,23 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
+# Utility
+gem 'kaminari'
+gem "rails_config"
+gem 'tapp'
+gem 'custom-template', :group => :development
+
 # For Heroku
 gem 'thin'
 
-group :production, :staging do
+group :production do
   gem 'pg'
   gem 'newrelic_rpm'
 end
 
-# Utility
-gem 'kaminari'
-gem "rails_config"
-
 # For OmniAuth
 gem 'omniauth-twitter'
-
-# Development Only
-group :development do
-  gem 'omniauth-scaffold'
-  gem 'custom-template'
-end
+gem 'omniauth-scaffold', :group => :development
 
 # For Markdown
 gem 'redcarpet'
@@ -65,5 +62,5 @@ gem "rubypython", "0.5.1"  # For Heroku
 # For EventMachine
 gem 'eventmachine'
 
-gem 'tapp'
-
+# For Twitter Bootstrap
+gem 'twitter-bootstrap-scaffold', :group => :development
