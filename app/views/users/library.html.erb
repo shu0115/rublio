@@ -20,12 +20,40 @@
 <% } %>
 </ul>
 
+<% @groups.each{ |group| %>
+<% if group.permission_ok?( session[:user_id] ) %>
+<span id="group_<%= group.id %>"></span>
 <br />
 <br />
+<br />
+<br />
+<br />
+<br />
+<div class="row span6 offset3">
+  <ul class="breadcrumb" id="group_<%#= group.id %>">
+    <li>
+      <h2 style="display: inline;"><%= link_to( group.name, controller: "pages", group_id: group.id ) %></h2>
+      <% if group.is_owner?( session[:user_id] ) %>
+        <%= link_to( "E", { controller: "groups", action: "edit", id: group.id } ) %>
+        <%= link_to( "M", { controller: "groups", action: "members", id: group.id } ) %>
+        <%= link_to( "D", { action: "delete_group", id: group.id }, data: { confirm: "「#{group.name}」を削除します。よろしいですか？(紐付くPageも削除されます。)" } ) %></td>
+        <%= link_to( "+", { controller: "pages", action: "new", group_id: group.id }, target: "_blank" ) %>
+      <% end %>
+      <span class="rage_<%= group.permission %>">[<%= group.permission %>]</span>
+    </li>
+  </ul>
+</div>
 
+<ul class="nav nav-tabs nav-stacked">
+  <li class="row span6 offset3"><%= link_to( "リスト1", "" ) %></li>
+  <li class="row span6 offset3"><%= link_to( "リスト2", "" ) %></li>
+  <li class="row span6 offset3"><%= link_to( "リスト3", "" ) %></li>
+</ul>
+<% end %>
+<% } %>
 
-
-
+<br />
+<br />
 
 <%= link_to_unless( @user.image.blank?, image_tag( @user.image, size: "20x20" ), "https://twitter.com/#!/#{@user.screen_name}", target: "_blank", title: @user.screen_name ) %>
 ：<%= @user.screen_name %>
@@ -36,7 +64,7 @@
 <%# グループ一覧 %>
 <% @groups.each{ |group| %>
 <% if group.permission_ok?( session[:user_id] ) %>
-<ul id="group_<%= group.id %>">
+<ul id="group_<%#= group.id %>">
   <%# グループ名 %>
   <li>
     <h2 style="display: inline;"><%= link_to( group.name, controller: "pages", group_id: group.id ) %></h2>

@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   # library #
   #---------#
   def library
-    user_id = params[:user_id].presence || session[:user_id]
+    user_id = params[:id].presence || session[:user_id]
     @active = { "#{params[:controller]}_#{params[:action]}" => "active" }
 
     @user = User.where( id: user_id ).first
