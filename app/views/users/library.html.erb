@@ -1,30 +1,31 @@
 
 <br />
 
-<% if @user.id == session[:user_id] %>
-  <%# グループ作成フォーム %>
-  <%= form_for( :group, url: { action: "create_group" } ) do |f| %>
+<div class="row">
+  <% if @user.id == session[:user_id] %>
+    <%# グループ作成フォーム %>
+    <%= form_for( :group, url: { action: "create_group" }, html:  { class: "well form-search span4 offset4" } ) do |f| %>
 
-    <span class="field">
       <%= f.label "Group" %>
-      <%= f.text_field :name %><br />
-    </span>
+      <%= f.text_field :name, class: "input-medium search-query" %>
 
-    <span class="actions">
-      <%= f.submit "Add", "data-disable-with" => "Add" %>
-    </span>
+      <%= f.submit "Add", class: "btn", "data-disable-with" => "Add" %>
+    <% end %>
   <% end %>
+</div>
 
-  <br />
-<% end %>
-
-<%# グループページ内リンク %>
+<ul class="nav nav-tabs nav-stacked">
 <% @groups.each{ |group| %>
-  <p><%= link_to( group.name, "#group_#{group.id}" ) %></p>
+  <li class="row span6 offset3"><%= link_to( group.name, "#group_#{group.id}" ) %></li>
 <% } %>
+</ul>
 
 <br />
 <br />
+
+
+
+
 
 <%= link_to_unless( @user.image.blank?, image_tag( @user.image, size: "20x20" ), "https://twitter.com/#!/#{@user.screen_name}", target: "_blank", title: @user.screen_name ) %>
 ：<%= @user.screen_name %>

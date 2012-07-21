@@ -10,8 +10,71 @@
 
 <body>
 
+<% if true %>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <ul class="nav">
+        <li><%= link_to APP_NAME, { controller: "users", action: "library", id: session[:user_id] }, class: "brand" %></li>
+      <% if current_user %>
+        <%# ログイン済み %>
+        <li><%= link_to_unless( current_user.screen_name.blank?, image_tag( current_user.image, size: "20x20" ), "https://twitter.com/#!/#{current_user.screen_name}", target: "_blank" ) %></li>
+        <li class="<%= @active['users_library'] %>"><%= link_to( current_user.screen_name, { controller: "users", action: "library", id: session[:user_id] } ) %></li>
+        <li class="<%= @active['users_index'] %>"><%= link_to( "Users", controller: "users", action: "index" ) %></li>
+        <% if false %><li class="<%= @active['users_library'] %>"><%= link_to( "MyPages", controller: "users", action: "library", id: session[:user_id] ) %></li><% end %>
+        <% if false %> | <%= link_to "MyGroups", controller: "groups", action: "index" %><% end %>
+        <li><%= link_to( "Logout", logout_path ) %></li>
+      <% else %>
+        <%# 未ログイン %>
+        <li><%= link_to "Login", "/auth/#{DEFAULT_PROVIDER}" %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<br />
+<br />
+<br />
+<% end %>
+
+<% if false %>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <!-- Everything you want hidden at 940px or less, place within here -->
+      <div class="nav-collapse">
+        <!-- .nav, .navbar-search, .navbar-form, etc -->
+        <ul class="nav">
+          <li><%= link_to APP_NAME, { controller: "users", action: "library", id: session[:user_id] }, class: "brand" %></li>
+          <li class="active"><a href="#">Home</a></li>
+          <li class="divider-vertical"></li>
+          <li><a href="#">Link</a></li>
+          <li class="divider-vertical"></li>
+          <li><a href="#">Link</a></li>
+          <li class="divider-vertical"></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+<br />
+<br />
+<br />
+<% end %>
+
+
 <div class="container">
 
+<% if false %>
 <%# ----- 追加 ----- %>
 <% if current_user %>
   <%# ログイン済み %>
@@ -27,6 +90,7 @@
 <% end %>
 
 <br />
+<% end %>
 
 <%# 通知／エラーメッセージ %>
 <%= simple_format( flash[:notice], style: "color: green;" ) unless flash[:notice].blank? %>
@@ -34,6 +98,7 @@
 <%# ----- ／追加 ----- %>
 
 <%= yield %>
+
 <br />
 <br />
 

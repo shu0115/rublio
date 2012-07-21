@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   # index #
   #-------#
   def index
+    @active = { "#{params[:controller]}_#{params[:action]}" => "active" }
+
     @users = User.order( "id DESC" ).page( params[:page] ).per( 500 ).all
   end
 
@@ -12,9 +14,11 @@ class UsersController < ApplicationController
   # library #
   #---------#
   def library
-    @user = User.where( id: params[:id] ).first
+    user_id = params[:user_id].presence || session[:user_id]
+    @active = { "#{params[:controller]}_#{params[:action]}" => "active" }
 
-    @groups = Group.where( user_id: @user.id ).includes( :pages ).order( "groups.name ASC, pages.title ASC" ).all
+    @user = User.where( id: user_id ).first
+    @groups = Group.where( user_id: user_id ).includes( :pages ).order( "groups.name ASC, pages.title ASC" ).all
     @group  = Group.new
   end
 
