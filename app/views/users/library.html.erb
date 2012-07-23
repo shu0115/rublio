@@ -25,7 +25,7 @@
 <% if group.permission_ok?( session[:user_id] ) %>
 <span id="group_<%= group.id %>"></span>
 
-<div class="row span6 offset3" style="padding: 70px 0px 0px 0px;">
+<div class="row span8 offset2" style="padding: 70px 0px 0px 0px;">
   <ul class="breadcrumb" id="group_<%#= group.id %>">
     <li>
       <h2 style="display: inline;"><%= link_to( group.name, controller: "pages", group_id: group.id ) %></h2>
@@ -44,8 +44,9 @@
   <%# ページ一覧 %>
   <% group.pages.each{ |page| %>
     <% if page.permission_ok?( session[:user_id], group ) %>
-      <li class="row span6 offset3" style="padding: 10px 0px 10px 0px;">
-        <span class="rage_<%= page.permission %>">[<%= page.permission %>]</span>
+      <li class="row span8 offset2" style="padding: 10px 0px 10px 0px;">
+        <%# Permission表示 %>
+        <span class="rage_<%= page.permission %>">[<%= page.permission.slice(0..2) %>]</span>
         <%= link_to( page.title, { controller: "pages", action: "show", id: page.id }, style: "display: inline;" ) %>
         <%= link_to( "C", { controller: "pages", action: "content", id: page.id }, style: "display: inline;" ) %>
 
@@ -56,7 +57,6 @@
         <% if page.is_owner?( session[:user_id] ) %>
           <%= link_to( "D", { controller: "pages", action: "destroy", id: page.id }, data: { confirm: "「#{page.title}」を削除します。よろしいですか？" }, style: "display: inline;" ) %>
         <% end %>
-        </div>
       </li>
     <% end %>
   <% } %>
