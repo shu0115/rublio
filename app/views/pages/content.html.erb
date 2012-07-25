@@ -20,8 +20,7 @@
 
 <br />
 
-<%#= link_to t( "menu.list", default: "List" ), action: "index", group_id: @page.group.try(:id) %>
-<%= link_to t( "menu.top", default: "Top" ), controller: "users", action: "library", id: @page.user_id, anchor: "group_#{@page.group_id}" %>
+<%= link_to "UserLibrary", controller: "users", action: "library", id: @page.user_id, anchor: "group_#{@page.group_id}" %>
 
 <br />
 <br />

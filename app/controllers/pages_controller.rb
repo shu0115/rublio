@@ -70,7 +70,6 @@ class PagesController < ApplicationController
   # update #
   #--------#
   def update
-#    page = Page.where( id: params[:id], user_id: session[:user_id] ).first
     page = Page.where( id: params[:id] ).includes( :group ).first
 
     unless page.permission_ok?( session[:user_id], page.group )
@@ -93,7 +92,7 @@ class PagesController < ApplicationController
     page = Page.where( id: params[:id], user_id: session[:user_id] ).first
     page.destroy
 
-    redirect_to( controller: "users", action: "library", id: session[:user_id], anchor: "group_#{page.group_id}" )
+    redirect_to( controller: "my", action: "library", anchor: "group_#{page.group_id}" )
   end
 
 end

@@ -1,6 +1,7 @@
 
 <h1>Listing Members</h1>
 
+<% if @group.is_owner?( session[:user_id] ) %>
 <%# メンバー追加フォーム %>
 <%= form_for( :group, url: { action: "add_member" } ) do |f| %>
   <%= f.hidden_field :id, { value: @group.id } %>
@@ -14,6 +15,7 @@
   <span class="actions">
     <%= f.submit "Add", "data-disable-with" => "Add" %>
   </span>
+<% end %>
 <% end %>
 
 <br />

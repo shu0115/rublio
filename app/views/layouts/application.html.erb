@@ -16,11 +16,11 @@
   <div class="navbar-inner">
     <div class="container">
       <ul class="nav">
-        <li><%= link_to APP_NAME, { controller: "users", action: "library", id: session[:user_id] }, class: "brand" %></li>
+        <li><%= link_to APP_NAME, :root, class: "brand" %></li>
       <% if current_user %>
         <%# ログイン済み %>
         <li><%= link_to_unless( current_user.screen_name.blank?, image_tag( current_user.image, size: "20x20" ), "https://twitter.com/#!/#{current_user.screen_name}", target: "_blank" ) %></li>
-        <li class="<%= @active.blank? ? '' : @active['users_library'] %>"><%= link_to( current_user.screen_name, { controller: "users", action: "library", id: session[:user_id] } ) %></li>
+        <li class="<%= @active.blank? ? '' : @active['my_library'] %>"><%= link_to( current_user.screen_name, { controller: "my", action: "library" } ) %></li>
         <li class="<%= @active.blank? ? '' : @active['users_index'] %>"><%= link_to( "Users", controller: "users", action: "index" ) %></li>
         <% if false %><li class="<%= @active.blank? ? '' : @active['users_library'] %>"><%= link_to( "MyPages", controller: "users", action: "library", id: session[:user_id] ) %></li><% end %>
         <% if false %> | <%= link_to "MyGroups", controller: "groups", action: "index" %><% end %>
@@ -57,6 +57,7 @@
 <br />
 
 <% if params[:controller] == "users" and params[:action] == "library" %>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 <% end %>

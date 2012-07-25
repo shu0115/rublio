@@ -1,19 +1,6 @@
 
 <br />
 
-<div class="row">
-  <% if @user.id == session[:user_id] %>
-    <%# グループ作成フォーム %>
-    <%= form_for( :group, url: { action: "create_group" }, html:  { class: "well form-search span4 offset4" } ) do |f| %>
-
-      <%= f.label "Group" %>
-      <%= f.text_field :name, class: "input-medium search-query" %>
-
-      <%= f.submit "Add", class: "btn", "data-disable-with" => "Add" %>
-    <% end %>
-  <% end %>
-</div>
-
 <ul class="nav nav-tabs nav-stacked">
 <% @groups.each{ |group| %>
   <li class="row span6 offset3"><%= link_to( group.name, "#group_#{group.id}" ) %></li>
@@ -29,12 +16,7 @@
   <ul class="breadcrumb" id="group_<%#= group.id %>">
     <li>
       <h2 style="display: inline;"><%= link_to( group.name, controller: "pages", group_id: group.id ) %></h2>
-      <% if group.is_owner?( session[:user_id] ) %>
-        <%= link_to( "E", { controller: "groups", action: "edit", id: group.id } ) %>
-        <%= link_to( "M", { controller: "groups", action: "members", id: group.id } ) %>
-        <%= link_to( "D", { action: "delete_group", id: group.id }, data: { confirm: "「#{group.name}」を削除します。よろしいですか？(紐付くPageも削除されます。)" } ) %></td>
-        <%= link_to( "+", { controller: "pages", action: "new", group_id: group.id }, target: "_blank" ) %>
-      <% end %>
+      <%= link_to( "M", { controller: "groups", action: "members", id: group.id } ) %>
       <span class="rage_<%= group.permission %>">[<%= group.permission %>]</span>
     </li>
   </ul>
@@ -47,15 +29,11 @@
       <li class="row span8 offset2" style="padding: 10px 0px 10px 0px;">
         <%# Permission表示 %>
         <span class="rage_<%= page.permission %>">[<%= page.permission.slice(0..2) %>]</span>
-        <%= link_to( page.title, { controller: "pages", action: "show", id: page.id }, style: "display: inline;" ) %>
-        <%= link_to( "C", { controller: "pages", action: "content", id: page.id }, style: "display: inline;" ) %>
+        <%= link_to( page.title, { controller: "pages", action: "show", id: page.id }, style: "display: inline;", title: "Show" ) %>
+        <%= link_to( "C", { controller: "pages", action: "content", id: page.id }, style: "display: inline;", title: "Content" ) %>
 
-        <% if page.edit_ok?( session[:user_id], group ) %>
-          <%= link_to( "E", { controller: "pages", action: "edit", id: page.id }, style: "display: inline;" ) %>
-        <% end %>
-
-        <% if page.is_owner?( session[:user_id] ) %>
-          <%= link_to( "D", { controller: "pages", action: "destroy", id: page.id }, data: { confirm: "「#{page.title}」を削除します。よろしいですか？" }, style: "display: inline;" ) %>
+        <% if page.permission == "group" and page.edit_ok?( session[:user_id], group ) %>
+          <%= link_to( "E", { controller: "pages", action: "edit", id: page.id }, style: "display: inline;", title: "Edit" ) %>
         <% end %>
       </li>
     <% end %>

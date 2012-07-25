@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
   # members #
   #---------#
   def members
-    @group = Group.where( id: params[:id], user_id: session[:user_id] ).includes( :users ).order( "group_members.created_at ASC" ).first
+    @group = Group.where( id: params[:id] ).includes( :users ).order( "group_members.created_at ASC" ).first
 
     if @group.blank?
       redirect_to( :root, alert: "該当するグループがありません。" ) and return
@@ -117,7 +117,7 @@ class GroupsController < ApplicationController
       message = { alert: "グループの更新に失敗しました。" }
     end
 
-    redirect_to( { controller: "users", action: "library", id: session[:user_id], anchor: "group_#{group.id}" }, message )
+    redirect_to( { controller: "my", action: "library", anchor: "group_#{group.id}" }, message )
   end
 
 =begin
