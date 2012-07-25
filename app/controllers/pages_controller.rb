@@ -15,6 +15,9 @@ class PagesController < ApplicationController
   def show
     @page = Page.where( id: params[:id] ).includes( :group ).first
 
+    # ブランクチェック
+    redirect_to( :root, alert: "該当するページがありません。" ) and return if @page.blank?
+
     # 公開範囲チェック
     redirect_to( :root, alert: "閲覧権限がありません。" ) and return unless @page.permission_ok?( session[:user_id], @page.group )
   end
@@ -24,6 +27,9 @@ class PagesController < ApplicationController
   #---------#
   def content
     @page = Page.where( id: params[:id] ).includes( :group ).first
+
+    # ブランクチェック
+    redirect_to( :root, alert: "該当するページがありません。" ) and return if @page.blank?
 
     # 公開範囲チェック
     redirect_to( :root, alert: "閲覧権限がありません。" ) and return unless @page.permission_ok?( session[:user_id], @page.group )
