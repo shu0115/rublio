@@ -31,7 +31,7 @@
         <%= link_to( "M", { controller: "groups", action: "members", id: group.id }, title: "Member" ) %>
       <% end %>
       <%= link_to( "D", { action: "delete_group", id: group.id }, title: "Delete", data: { confirm: "「#{group.name}」を削除します。よろしいですか？(紐付くPageも削除されます。)" } ) %></td>
-      <%= link_to( "+", { controller: "pages", action: "new", group_id: group.id }, target: "_blank", title: "New" ) %>
+      <%= link_to( "+", { controller: "pages", action: "new", group_id: group.id }, title: "New" ) %>
       <span class="rage_<%= group.permission %>">[<%= group.permission %>]</span>
     </li>
   </ul>
