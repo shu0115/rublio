@@ -16,7 +16,9 @@
   <ul class="breadcrumb" id="group_<%#= group.id %>">
     <li>
       <h2 style="display: inline;"><%= link_to( group.name, controller: "pages", group_id: group.id ) %></h2>
-      <%= link_to( "M", { controller: "groups", action: "members", id: group.id } ) %>
+      <% if group.permission == "group" %>
+        <%= link_to( "M", { controller: "groups", action: "members", id: group.id } ) %>
+      <% end %>
       <span class="rage_<%= group.permission %>">[<%= group.permission %>]</span>
     </li>
   </ul>
