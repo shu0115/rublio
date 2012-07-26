@@ -2,8 +2,12 @@
 <br />
 
 <ul class="nav nav-tabs nav-stacked">
+
+<%# グループページ内リンク一覧 %>
 <% @groups.each{ |group| %>
-  <li class="row span6 offset3"><%= link_to( group.name, "#group_#{group.id}" ) %></li>
+  <% if group.permission_ok?( session[:user_id] ) %>
+    <li class="row span6 offset3"><%= link_to( group.name, "#group_#{group.id}" ) %></li>
+  <% end %>
 <% } %>
 </ul>
 

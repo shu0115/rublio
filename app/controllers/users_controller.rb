@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @active = { "#{params[:controller]}_#{params[:action]}" => "active" }
 
     @user = User.where( id: user_id ).first
-    @groups = Group.where( user_id: user_id ).includes( :pages ).order( "groups.name ASC, pages.title ASC" ).all
+    @groups = Group.where( user_id: user_id ).where( "groups.permission = 'group' OR groups.permission = 'public'" ).includes( :pages ).order( "groups.name ASC, pages.title ASC" ).all
     @group  = Group.new
   end
 
