@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -36,12 +36,6 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-# Utility
-gem 'kaminari'
-gem "rails_config"
-gem 'tapp'
-gem 'custom-template', :group => :development
-
 # For Heroku
 gem 'thin'
 
@@ -64,3 +58,10 @@ gem 'eventmachine'
 
 # For Twitter Bootstrap
 gem 'twitter-bootstrap-scaffold', :group => :development
+
+# Utility
+gem 'kaminari'
+gem "rails_config"
+gem 'tapp'
+gem 'custom-template', :group => :development
+gem 'action_args'

@@ -4,8 +4,8 @@ class MyController < ApplicationController
   #---------#
   # library #
   #---------#
-  def library
-    @active = { "#{params[:controller]}_#{params[:action]}" => "active" }
+  def library( controller, action )
+    @active = { "#{controller}_#{action}" => "active" }
 
     @user = User.where( id: session[:user_id] ).first
     @groups = Group.where( user_id: session[:user_id] ).includes( :pages ).order( "groups.name ASC, pages.title ASC" ).all
