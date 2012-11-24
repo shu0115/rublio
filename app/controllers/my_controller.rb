@@ -12,6 +12,18 @@ class MyController < ApplicationController
     @group  = Group.new
   end
 
+  #--------#
+  # search #
+  #--------#
+  # 検索
+  def search( word )
+    words = word.split(/ |　/)  # 半角スペースor全角スペースで分割する
+    words.each{ |w|
+      @pages = Page.where( "pages.title LIKE :word OR pages.content LIKE :word", word: "%#{w}%" )
+    }
+    puts "[ ---------- @pages ---------- ]" ; @pages.to_sql.tapp ;
+  end
+
   #--------------#
   # create_group #
   #--------------#
