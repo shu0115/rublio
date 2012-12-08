@@ -1,6 +1,9 @@
 
 <br />
 
+<%= render partial: 'search_box' %>
+
+<% if false %>
 <div class="row">
   <%# 検索フォーム %>
   <%= form_tag( my_search_path, method: "get", class: "well form-search span3 offset4" ) do %>
@@ -8,6 +11,7 @@
     <%= submit_tag "検索", class: "btn", "data-disable-with" => "検索" %>
   <% end %>
 </div>
+<% end %>
 
 <br />
 

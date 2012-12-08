@@ -8,6 +8,7 @@ Rublio::Application.routes.draw do
   match "/logout" => "sessions#destroy", :as => :logout
 
   get "/my/search" => "my#search"
+  get "/my/library" => "my#library"
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
