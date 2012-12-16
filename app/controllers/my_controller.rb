@@ -24,7 +24,6 @@ class MyController < ApplicationController
     # 半角スペースor全角スペースで分割する
     words = word.split(/ |　/)
     words.each{ |w|
-#      @pages = Page.where( "pages.title LIKE :word OR pages.content LIKE :word", word: "%#{w}%" )
       @pages = Page.where( "pages.#{search_type} LIKE :word", word: "%#{w}%" )
     }
     puts "[ ---------- @pages ---------- ]" ; @pages.to_sql.tapp ;
