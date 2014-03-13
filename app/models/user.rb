@@ -1,26 +1,31 @@
-# coding: utf-8
 class User < ActiveRecord::Base
-  attr_accessible :provider, :uid, :name, :screen_name, :image, :token, :secret
-
   has_many :pages
-#  has_many :groups
-  has_many :group_members, :dependent => :destroy
-  has_many :groups, :through => :group_members
+  # has_many :group_members, :dependent => :destroy
+  has_many :groups
+
+  # auth情報更新
+  def auth_update(auth)
+    image_path = auth["info"]["image"].to_s.gsub('_normal', '') rescue nil
+    self.name        = auth["info"]["name"]     if auth["info"]["name"].present?
+    self.screen_name = auth["info"]["nickname"] if auth["info"]["nickname"].present?
+    self.image       = image_path               if image_path.present?
+    self.save!
+  rescue => e
+    puts "[ ---------- e ---------- ]" ; e.tapp ;
+    return nil
+  end
 
   private
 
-  #---------------------------#
-  # self.create_with_omniauth #
-  #---------------------------#
   def self.create_with_omniauth( auth )
     user = User.new
     user[:provider] = auth["provider"]
-    user[:uid] = auth["uid"]
+    user[:uid]      = auth["uid"]
 
     unless auth["info"].blank?
-      user[:name] = auth["info"]["name"]
+      user[:name]        = auth["info"]["name"]
       user[:screen_name] = auth["info"]["nickname"]
-      user[:image] = auth["info"]["image"]
+      user[:image]       = auth["info"]["image"]
     end
 
     unless auth["credentials"].blank?
@@ -32,5 +37,4 @@ class User < ActiveRecord::Base
 
     return user
   end
-
 end

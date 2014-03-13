@@ -1,0 +1,20 @@
+%h1 Editing Group
+= form_for( :group, url: { action: "update", id: @group.id } ) do |f|
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name, size: "50px"
+  .field
+    = f.radio_button :permission , "private"
+    = f.label :permission_private, "Private"
+    = f.radio_button :permission , "group"
+    = f.label :permission_group, "Group"
+    = f.radio_button :permission , "public"
+    = f.label :permission_public, "Public"
+  .actions
+    = f.submit t( "menu.update", default: "update" ), "data-disable-with" => t( "menu.update", default: "update" )
+%br/
+= link_to t( "menu.show" ), action: "show", id: @group.id
+%br/
+%br/
+= link_to t( "menu.top" ), controller: "users", action: "library", id: @group.user_id, anchor: "group_#{@group.id}"

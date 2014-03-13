@@ -1,0 +1,32 @@
+%br/
+%ul.nav.nav-tabs.nav-stacked
+  - @groups.each{ |group|
+  - if group.permission_ok?( session[:user_id] )
+    %li.row.span6.offset3= link_to( group.name, "#group_#{group.id}" )
+  - }
+- @groups.each{ |group|
+- if group.permission_ok?( session[:user_id] )
+  %span{:id => "group_#{group.id}"}
+  .row.span8.offset2{:style => "padding: 70px 0px 0px 0px;"}
+    %ul.breadcrumb{:id => "group_</haml:block><haml:silent></haml:silent><haml:block>"}
+      %li
+        %h2{:style => "display: inline;"}= link_to( group.name, controller: "pages", group_id: group.id )
+        - if group.permission == "group"
+          = link_to( "M", { controller: "groups", action: "members", id: group.id } )
+        %span{:class => "rage_#{group.permission}"}
+          [#{group.permission}]
+  %ul.nav.nav-tabs.nav-stacked
+    - group.pages.each{ |page|
+    - if page.permission_ok?( session[:user_id], group )
+      %li.row.span8.offset2{:style => "padding: 10px 0px 10px 0px;"}
+        %span{:class => "rage_#{page.permission}"}
+          [#{page.permission.slice(0..2)}]
+        = link_to( page.title, { controller: "pages", action: "show", id: page.id }, style: "display: inline;", title: "Show" )
+        = link_to( "C", { controller: "pages", action: "content", id: page.id }, style: "display: inline;", title: "Content" )
+        - if page.permission == "group" and page.edit_ok?( session[:user_id], group )
+          = link_to( "E", { controller: "pages", action: "edit", id: page.id }, style: "display: inline;", title: "Edit" )
+    - }
+- }
+%br/
+%br/
+= link_to t( "menu.top", default: "Top" ), :root

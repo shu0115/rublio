@@ -1,0 +1,18 @@
+%h1 Editing Page
+= form_for( :page, url: page_path(@page, group_id: @group_id), method: :put, class: "form-horizontal" ) do |f|
+  .field
+    = f.label :group_id
+    = f.select :group_id, @groups.map{ |g| [g.name, g.id] }, selected: @page.group_id
+  .field
+    = f.label :title
+    = f.text_field :title, size: "50px"
+  .field
+    = f.label :content
+    = f.text_area :content, wrap: "off", class: "span12", rows: 50
+  .actions
+    = f.submit t( "menu.update", default: "update" ), "data-disable-with" => t( "menu.update", default: "update" )
+
+= link_to t( "menu.show", default: "Show" ), page_path(@page)
+%br/
+%br/
+= link_to "MyLibrary", my_library_path(anchor: "group_#{@page.group_id}")

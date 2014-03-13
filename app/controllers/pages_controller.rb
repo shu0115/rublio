@@ -1,67 +1,33 @@
-# coding: utf-8
 class PagesController < ApplicationController
+  permits :user_id, :group_id, :title, :content
 
-  #-------#
-  # index #
-  #-------#
-  def index
-    @pages = Page.where( group_id: params[:group_id] ).includes( :user, :group ).all
-    @group = Group.where( id: params[:group_id] ).first
+  def index(group_id)
+    @pages = Page.where(group_id: group_id, user_id: current_user.id).includes(:user, :group)
+    @group = Group.find_by(id: group_id, user_id: current_user.id)
   end
 
-  #------#
-  # show #
-  #------#
-  def show
-    @page = Page.where( id: params[:id] ).includes( :group ).first
+  def show(id)
+    @page = Page.includes(:group).mine(current_user).find_by(id: id)
 
-    # ブランクチェック
-    redirect_to( :root, alert: "該当するページがありません。" ) and return if @page.blank?
-
-    # 公開範囲チェック
-    redirect_to( :root, alert: "閲覧権限がありません。" ) and return unless @page.permission_ok?( session[:user_id], @page.group )
+    redirect_to :root, alert: "該当するページがありません。" and return if @page.blank?
   end
 
-  #---------#
-  # content #
-  #---------#
-  def content
-    @page = Page.where( id: params[:id] ).includes( :group ).first
-
-    # ブランクチェック
-    redirect_to( :root, alert: "該当するページがありません。" ) and return if @page.blank?
-
-    # 公開範囲チェック
-    redirect_to( :root, alert: "閲覧権限がありません。" ) and return unless @page.permission_ok?( session[:user_id], @page.group )
-
-    render layout: false
-  end
-
-  #-----#
-  # new #
-  #-----#
-  def new
-    @group = Group.where( id: params[:group_id], user_id: session[:user_id] ).first
-    @group_id = @group.id
+  def new(group_id)
+    @group = Group.mine(current_user).find_by(id: group_id)
+    # @page = Page.includes(:group).mine(current_user).find_by(id: id)
+    # @group_id = @group.id
     @page = Page.new
   end
 
-  #------#
-  # edit #
-  #------#
-  def edit
-#    @page = Page.where( id: params[:id], user_id: session[:user_id] ).first
-    @page = Page.where( id: params[:id] ).includes( :group ).first
-    @groups = Group.where( user_id: session[:user_id] ).order( "name ASC" ).all
+  def edit(id)
+    @page   = Page.includes(:group).mine(current_user).find_by(id: id)
+    @groups = Group.where(user_id: current_user.id).order("name ASC")
   end
 
-  #--------#
-  # create #
-  #--------#
-  def create
-    page = Page.new( params[:page] )
-    page.user_id = session[:user_id]
-    page.group_id = params[:group_id]
+  def create(page, group_id)
+    page = Page.new(page.permit!)
+    page.user_id  = current_user.id
+    page.group_id = group_id
 
     if page.save
       message = { notice: "ページを作成しました。" }
@@ -69,36 +35,25 @@ class PagesController < ApplicationController
       message = { alert: "ページの作成に失敗しました。" }
     end
 
-    redirect_to( { action: "show", id: page.id }, message )
+    redirect_to page_path(page), message
   end
 
-  #--------#
-  # update #
-  #--------#
-  def update
-    page = Page.where( id: params[:id] ).includes( :group ).first
+  def update(id, page)
+    @page = Page.mine(current_user).find_by(id: id)
 
-    unless page.permission_ok?( session[:user_id], page.group )
-      redirect_to( { action: "show", id: page.id }, "更新権限がありません。" ) and return
-    end
-
-    if page.update_attributes( params[:page] )
+    if @page.update(page.permit!)
       message = { notice: "ページを更新しました。" }
     else
       message = { alert: "ページの更新に失敗しました。" }
     end
 
-    redirect_to( { action: "show", id: page.id }, message )
+    redirect_to page_path(@page), message
   end
 
-  #---------#
-  # destroy #
-  #---------#
-  def destroy
-    page = Page.where( id: params[:id], user_id: session[:user_id] ).first
+  def destroy(id)
+    page = Page.mine(current_user).find_by(id: id)
     page.destroy
 
-    redirect_to( controller: "my", action: "library", anchor: "group_#{page.group_id}" )
+    redirect_to my_library_path(anchor: "group_#{page.group_id}")
   end
-
 end

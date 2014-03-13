@@ -1,0 +1,32 @@
+%br/
+= render partial: 'search_box'
+%br/
+.row
+  = form_for( :group, url: groups_path, html: { class: "well form-search span4 offset4" } ) do |f|
+    = f.label "Group"
+    = f.text_field :name, class: "input-medium search-query"
+    = f.submit "Add", class: "btn", "data-disable-with" => "Add"
+
+%ul.nav.nav-tabs.nav-stacked
+  - @groups.each do |group|
+    %li.row.span6.offset3= link_to( group.name, "#group_#{group.id}" )
+
+- @groups.each do |group|
+  %span{:id => "group_#{group.id}"}
+  .row.span8.offset2{:style => "padding: 70px 0px 0px 0px;"}
+    %ul.breadcrumb{:id => "group_</haml:block><haml:silent></haml:silent><haml:block>"}
+      %li
+        %h2{:style => "display: inline;"}= link_to group.name, pages_path(group_id: group.id), title: "Group"
+        = link_to( "E", edit_group_path(group), title: "Edit" )
+        = link_to "D", group_path(group), method: :delete, title: "Delete", data: { confirm: "「#{group.name}」を削除します。よろしいですか？(紐付くPageも削除されます。)" }
+        = link_to "+", new_page_path(group_id: group.id), title: "New"
+
+  %ul.nav.nav-tabs.nav-stacked
+    - group.pages.each do |page|
+      %li.row.span8.offset2{:style => "padding: 10px 0px 10px 0px;"}
+        = link_to page.title, page_path(page), style: "display: inline;"
+        = link_to "E", edit_page_path(page), style: "display: inline;", title: "Edit"
+        = link_to "D", page_path(page), method: :delete, style: "display: inline;", title: "Delete", data: { confirm: "「#{page.title}」を削除します。よろしいですか？" }
+%br/
+%br/
+= link_to t( "menu.top", default: "Top" ), :root
