@@ -4,14 +4,6 @@
 %ul.nav.nav-tabs.nav-stacked
   - @pages.each do |page|
     %li.row.span8.offset2{:style => "padding: 10px 0px 10px 0px;"}
-      / %span{:class => "rage_#{page.permission}"}
-      / [#{page.permission.slice(0..2)}]
-      / = link_to( page.title, { controller: "pages", action: "show", id: page.id }, style: "display: inline;" )
-      / / = link_to( "C", { controller: "pages", action: "content", id: page.id }, style: "display: inline;", title: "Content" )
-      / = link_to( "E", { controller: "pages", action: "edit", id: page.id }, style: "display: inline;", title: "Edit" )
-      / = link_to( "D", { controller: "pages", action: "destroy", id: page.id }, style: "display: inline;", title: "Delete", data: { confirm: "「#{page.title}」を削除します。よろしいですか？" } )
-
       = link_to page.title, page_path(page), style: "display: inline;"
-      / = link_to( "C", { controller: "pages", action: "content", id: page.id }, style: "display: inline;", title: "Content" )
       = link_to "E", edit_page_path(page), style: "display: inline;", title: "Edit"
       = link_to "D", page_path(page), method: :delete, style: "display: inline;", title: "Delete", data: { confirm: "「#{page.title}」を削除します。よろしいですか？" }

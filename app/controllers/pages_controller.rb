@@ -14,8 +14,6 @@ class PagesController < ApplicationController
 
   def new(group_id)
     @group = Group.mine(current_user).find_by(id: group_id)
-    # @page = Page.includes(:group).mine(current_user).find_by(id: id)
-    # @group_id = @group.id
     @page = Page.new
   end
 

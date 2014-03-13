@@ -9,15 +9,14 @@
     %th
     %th
     %th
-  - @pages.each{ |page|
-  %tr
-    %td{:align => "center"}= link_to_unless( page.user.try(:image).blank?, image_tag( page.user.try(:image), size: "20x20" ), "https://twitter.com/#!/#{page.user.try(:screen_name)}", target: "_blank", title: page.user.try(:screen_name) )
-    %td= page.group.try(:name)
-    %td= page.title
-    %td= link_to( t( "menu.show", default: "Show" ), action: "show", id: page.id )
-    %td= link_to( t( "menu.edit", default: "Edit" ), action: "edit", id: page.id )
-    %td= link_to( t( "menu.destroy", default: "Delete" ), { action: "destroy", id: page.id }, data: { confirm: "本当に削除してよろしいですか？" } )
-  - }
+  - @pages.each do |page|
+    %tr
+      %td{:align => "center"}= link_to_unless( page.user.try(:image).blank?, image_tag( page.user.try(:image), size: "20x20" ), "https://twitter.com/#!/#{page.user.try(:screen_name)}", target: "_blank", title: page.user.try(:screen_name) )
+      %td= page.group.try(:name)
+      %td= page.title
+      %td= link_to( t( "menu.show", default: "Show" ), action: "show", id: page.id )
+      %td= link_to( t( "menu.edit", default: "Edit" ), action: "edit", id: page.id )
+      %td= link_to( t( "menu.destroy", default: "Delete" ), { action: "destroy", id: page.id }, data: { confirm: "本当に削除してよろしいですか？" } )
 %br/
 = link_to t( "menu.new", default: "New" ), action: "new", group_id: @group.id
 %br/

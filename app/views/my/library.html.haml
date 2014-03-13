@@ -16,9 +16,9 @@
   .row.span8.offset2{:style => "padding: 70px 0px 0px 0px;"}
     %ul.breadcrumb{:id => "group_</haml:block><haml:silent></haml:silent><haml:block>"}
       %li
-        %h2{:style => "display: inline;"}= link_to group.name, pages_path(group_id: group.id), title: "Group"
+        %h2{:style => "display: inline;"}= group.name
         = link_to( "E", edit_group_path(group), title: "Edit" )
-        = link_to "D", group_path(group), method: :delete, title: "Delete", data: { confirm: "「#{group.name}」を削除します。よろしいですか？(紐付くPageも削除されます。)" }
+        = link_to "D", group_path(group), method: :delete, title: "Delete", data: { confirm: "「#{group.name}」グループを削除します。よろしいですか？(紐付くページも削除されます。)" }
         = link_to "+", new_page_path(group_id: group.id), title: "New"
 
   %ul.nav.nav-tabs.nav-stacked
