@@ -1,5 +1,3 @@
-# Please Design!
-
 # Rublio
 
 Rublio is Information Library System.
