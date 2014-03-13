@@ -1,12 +1,13 @@
-# coding: utf-8
 class SessionsController < ApplicationController
+  skip_before_filter :authenticate
 
-  #----------#
-  # callback #
-  #----------#
+  # ログイン
   def callback
     auth = request.env["omniauth.auth"]
     user = User.where( provider: auth["provider"], uid: auth["uid"] ).first || User.create_with_omniauth( auth )
+    user.auth_update(auth)
+    session[:user_id] = user.id
+
     session[:user_id] = user.id
 
     # 保管URLへリダイレクト
@@ -16,24 +17,19 @@ class SessionsController < ApplicationController
       return
     end
 
-#    redirect_to :root, notice: "ログインしました。"
-    redirect_to( { controller: "my", action: "library" }, notice: "ログインしました。" )
+    redirect_to my_library_path and return
   end
 
-  #---------#
-  # destroy #
-  #---------#
+  # ログアウト
   def destroy
     session[:user_id] = nil
 
-    redirect_to :root, notice: "ログアウトしました。"
+    redirect_to :root and return
   end
 
-  #---------#
-  # failure #
-  #---------#
+  # ログインエラー
   def failure
-    render text: "<span style='color: red;'>Auth Failure</span>"
+    flash[:alert] = 'Auth Failure'
+    redirect_to :root and return
   end
-
 end

@@ -1,0 +1,11 @@
+%h3= @group.name
+%h1 New Page
+= form_for :page, url: pages_path(group_id: @group) do |f|
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :content
+    = f.text_area :content, wrap: "off", class: "span12", rows: 50
+  .actions
+    = f.submit t("menu.create", default: "create"), data: { disable_with: t("menu.create", default: "Create") }

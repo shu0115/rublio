@@ -1,0 +1,9 @@
+%br/
+= render partial: 'search_box'
+%br/
+%ul.nav.nav-tabs.nav-stacked
+  - @pages.each do |page|
+    %li.row.span8.offset2{:style => "padding: 10px 0px 10px 0px;"}
+      = link_to page.title, page_path(page), style: "display: inline;"
+      = link_to "E", edit_page_path(page), style: "display: inline;", title: "Edit"
+      = link_to "D", page_path(page), method: :delete, style: "display: inline;", title: "Delete", data: { confirm: "「#{page.title}」を削除します。よろしいですか？" }

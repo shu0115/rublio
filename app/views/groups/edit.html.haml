@@ -1,0 +1,12 @@
+%h1 Editing Group
+= form_for :group, url: group_path(@group.id), method: :put do |f|
+  .field
+    = f.label :name
+    = f.text_field :name, size: "50px"
+  .actions
+    = f.submit t("menu.update", default: "update"), data: { disable_with: t("menu.update", default: "update") }
+%br/
+= link_to t("menu.show"), group_path(@group)
+%br/
+%br/
+= link_to "MyLibrary", my_library_path(anchor: "group_#{@group.id}")
