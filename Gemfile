@@ -52,7 +52,7 @@ group :production do
   gem "newrelic_rpm"
   gem "bounscale"
   gem "bugsnag"
-  gem "appsignal"
+  # gem "appsignal"
 end
 
 # For OmniAuth
