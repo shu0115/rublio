@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require cerulean/loader
+//= require cerulean/bootswatch
 
 $(function () {
   // aタグにtarget=blank指定
