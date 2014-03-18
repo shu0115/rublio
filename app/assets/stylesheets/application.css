@@ -28,3 +28,22 @@
 .groups .list-group-item {
   margin: 5px 0px 5px 0px;
 }
+
+.my_library_group_button {
+  line-height: 22px;
+}
+
+.my_library_page_button {
+  line-height: 24px;
+}
+
+.my_library_group_title {
+  width: 500px;
+  float: left;
+  margin: 0px 10px 10px 0px;
+}
+
+.my_library_page_title {
+  width: 500px;
+  float: left;
+}
