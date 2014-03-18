@@ -9,7 +9,7 @@ class PagesController < ApplicationController
   def show(id)
     @page = Page.includes(:group).mine(current_user).find_by(id: id)
 
-    redirect_to :root, alert: "該当するページがありません。" and return if @page.blank?
+    redirect_to :root, alert: '該当するページがありません。' and return if @page.blank?
   end
 
   def new(group_id)
@@ -28,9 +28,9 @@ class PagesController < ApplicationController
     page.group_id = group_id
 
     if page.save
-      message = { notice: "ページを作成しました。" }
+      message = { notice: 'ページを作成しました。' }
     else
-      message = { alert: "ページの作成に失敗しました。" }
+      message = { alert: 'ページの作成に失敗しました。' }
     end
 
     redirect_to page_path(page), message
@@ -40,9 +40,10 @@ class PagesController < ApplicationController
     @page = Page.mine(current_user).find_by(id: id)
 
     if @page.update(page.permit!)
-      message = { notice: "ページを更新しました。" }
+      # message = { notice: "ページを更新しました。" }
+      message = { notice: '' }
     else
-      message = { alert: "ページの更新に失敗しました。" }
+      message = { alert: 'ページの更新に失敗しました。' }
     end
 
     redirect_to page_path(@page), message
