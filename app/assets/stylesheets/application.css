@@ -8,6 +8,42 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require cerulean/loader
+ *= require cerulean/bootswatch
  *= require_self
- *= require_tree .
  */
+
+.page_top_margin {
+  margin: 40px 50px 0px 50px;
+}
+
+.top_form .form-control {
+  width: 300px;
+}
+
+.text_search_box_submit {
+  margin: 10px;
+}
+
+.groups .list-group-item {
+  margin: 5px 0px 5px 0px;
+}
+
+.my_library_group_button {
+  line-height: 22px;
+}
+
+.my_library_page_button {
+  line-height: 24px;
+}
+
+.my_library_group_title {
+  width: 500px;
+  float: left;
+  margin: 0px 10px 10px 0px;
+}
+
+.my_library_page_title {
+  width: 500px;
+  float: left;
+}
