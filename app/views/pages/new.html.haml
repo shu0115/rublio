@@ -5,3 +5,6 @@
       = render partial: '/pages/form', locals: { f: f, group: @group }
     .form-group
       = f.submit t("menu.create", default: "create"), data: { disable_with: t("menu.create", default: "Create") }, class: 'btn btn-primary'
+
+  = link_to "Group", group_path(@group), class: 'btn btn-default'
+  = link_to t("menu.top", default: "Top"), my_library_path, class: 'btn btn-default'

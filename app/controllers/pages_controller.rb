@@ -53,6 +53,6 @@ class PagesController < ApplicationController
     page = Page.mine(current_user).find_by(id: id)
     page.destroy
 
-    redirect_to my_library_path(anchor: "group_#{page.group_id}")
+    redirect_to group_path(page.group_id)
   end
 end

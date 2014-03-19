@@ -9,4 +9,5 @@
     .form-group
       = f.submit t("menu.update", default: "update"), data: { disable_with: t("menu.update", default: "Update") }, class: 'btn btn-primary'
   %br/
-  = link_to "MyLibrary", my_library_path(anchor: "group_#{@group_id}"), class: 'btn btn-default'
+  = link_to "Group", group_path(@group), class: 'btn btn-default'
+  = link_to t("menu.top", default: "Top"), my_library_path, class: 'btn btn-default'

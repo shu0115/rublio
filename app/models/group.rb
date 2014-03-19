@@ -4,6 +4,8 @@ class Group < ActiveRecord::Base
 
   scope :mine, ->(user) { where( groups: { user_id: user.id } ) }
 
+  validates :name, presence: true
+
   private
 
   # デフォルトグループ作成

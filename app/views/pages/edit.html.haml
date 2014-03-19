@@ -8,7 +8,9 @@
     = render partial: '/pages/form', locals: { f: f, group: @group }
     .form-group
       = f.submit t("menu.update", default: "update"), data: { disable_with: t("menu.update", default: "Update") }, class: 'btn btn-primary'
-      = link_to t("menu.show", default: "Show"), page_path(@page), class: 'btn btn-primary'
+      = link_to t("menu.show", default: "Show"), page_path(@page), class: 'btn btn-default'
   %br/
   %br/
-  = link_to "MyLibrary", my_library_path(anchor: "group_#{@page.group_id}"), class: 'btn btn-default'
+  / = link_to "MyLibrary", my_library_path(anchor: "group_#{@page.group_id}"), class: 'btn btn-default'
+  = link_to "Group", group_path(@page.group_id), class: 'btn btn-default'
+  = link_to t("menu.top", default: "Top"), my_library_path, class: 'btn btn-default'

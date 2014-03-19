@@ -8,38 +8,6 @@
     = favicon_link_tag 'favicon.ico'
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
   %body
-    / .container
-    /   .navbar.navbar-fixed-top
-    /     .navbar-inner
-    /       .container
-    /         %ul.nav
-    /           %li= link_to APP_NAME, :root, class: "brand"
-    /           - if current_user
-    /             %li= link_to_unless current_user.screen_name.blank?, image_tag( current_user.image, size: "20x20" ), "https://twitter.com/#!/#{current_user.screen_name}", target: "_blank"
-    /             %li{:class => @active.blank? ? '' : @active['my_library']}= link_to current_user.screen_name, my_library_path
-    /             %li= link_to( "Logout", logout_path )
-    /           - else
-    /             %li= link_to "Login", "/auth/#{DEFAULT_PROVIDER}"
-    /   %br/
-    /   %br/
-    /   %br/
-    /   = simple_format( flash[:notice], style: "color: green;" ) unless flash[:notice].blank?
-    /   = simple_format( flash[:alert], style: "color: red;" ) unless flash[:alert].blank?
-    /   = yield
-    /   %br/
-    /   %br/
-    /   %center
-    /     Developed by
-    /     = succeed "," do
-    /       %a{:href => "https://twitter.com/#!/shu_0115/", :target => "_blank"} shu_0115
-    /     Designed by
-    /     = succeed "," do
-    /       %a{:href => "https://twitter.com/#!/DESIGNER_ID/", :target => "_blank"} DESIGNER_NAME
-    /     Licence by
-    /     %a{:href => "http://creativecommons.org/licenses/by-nc-sa/2.1/jp/", :target => "_blank"} CC BY-NC-SA 2.1
-    /   %br/
-    /   - if (params[:controller] == "users" or params[:controller] == "my") and params[:action] == "library"
-
     .navbar.navbar-default.navbar-fixed-top
       .navbar-header
         = link_to Settings.app_name, :root, class: 'navbar-brand'
@@ -60,8 +28,9 @@
         = yield
         %br/
         %br/
-        %center
+        .text-center
           Developed by
           %a{:href => "https://twitter.com/#{Settings.programmer_twitter_id}/", :target => "_blank"}
             @#{Settings.programmer_twitter_id}
+        %br
         %br

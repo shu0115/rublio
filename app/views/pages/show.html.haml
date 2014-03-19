@@ -15,4 +15,5 @@
 = link_to t( "menu.destroy", default: "Delete"), page_path(@page), method: :delete, data: { confirm: "「#{@page.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
 %br/
 %br/
-= link_to "MyLibrary", my_library_path(anchor: "group_#{@page.group_id}"), class: 'btn btn-default'
+= link_to "Group", group_path(@page.group_id), class: 'btn btn-default'
+= link_to t("menu.top", default: "Top"), my_library_path, class: 'btn btn-default'

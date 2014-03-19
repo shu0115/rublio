@@ -3,4 +3,6 @@ class Page < ActiveRecord::Base
   belongs_to :group
 
   scope :mine, ->(user) { where( pages: { user_id: user.id } ) }
+
+  validates :title, presence: true
 end

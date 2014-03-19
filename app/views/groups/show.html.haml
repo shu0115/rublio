@@ -1,0 +1,28 @@
+.container{ style: 'width: 700px' }
+  / - # グループ一覧
+  / - @groups.each do |group|
+  %div{ id: "group_#{@group.id}" }
+
+  %ul.nav.nav-pills.nav-stacked{ style: 'margin: 30px 0px 0px 0px;' }
+    %li.active{ style: '' }
+      = link_to "#group_#{@group.id}", class: 'my_library_group_title' do
+        = @group.name
+      %span
+        = link_to 'E', edit_group_path(@group), class: 'btn btn-default my_library_group_button', title: 'Edit'
+        = link_to 'D', group_path(@group), method: :delete, class: 'btn btn-default my_library_group_button', title: 'Delete', data: { confirm: '「#{group.name}」グループを削除します。よろしいですか？(紐付くページも削除されます。)' }
+        = link_to '+', new_page_path(group_id: @group.id), class: 'btn btn-default my_library_group_button', title: 'New'
+
+  - # ページ一覧
+  %ul.list-group
+    - @group.pages.each do |page|
+      %div{ style: 'margin: 0px 10px 10px 0px;' }
+        = link_to page_path(page), style: "display: inline;" do
+          %li.list-group-item.my_library_page_title
+            = page.title
+        %span{ style: 'text-align: right; margin: 0px 0px 0px 10px;' }
+          = link_to "E", edit_page_path(page), class: 'btn btn-default my_library_page_button', title: "Edit"
+          = link_to "D", page_path(page), method: :delete, class: 'btn btn-default my_library_page_button', title: "Delete", data: { confirm: "「#{page.title}」を削除します。よろしいですか？" }
+  %br
+  %br
+  = link_to t("menu.top", default: "Top"), my_library_path, class: 'btn btn-default'
+  %br
