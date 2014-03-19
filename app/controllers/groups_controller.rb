@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
 
   # 詳細
   def show(id)
-    @group = Group.includes(:pages).mine(current_user).find_by(id: id)
+    @group = Group.includes(:pages).mine(current_user).order("pages.title ASC").find_by(id: id)
   end
 
   # 編集

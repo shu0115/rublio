@@ -4,7 +4,8 @@ class MyController < ApplicationController
     @active = { "#{controller}_#{action}" => "active" }
 
     @user   = User.find_by(id: current_user.id)
-    @groups = Group.where(user_id: current_user.id).includes(:pages).order("groups.name ASC, pages.title ASC").references(:pages)
+    # @groups = Group.where(user_id: current_user.id).includes(:pages).order("groups.name ASC, pages.title ASC").references(:pages)
+    @groups = Group.where(user_id: current_user.id).order("groups.name ASC").references(:pages)
     @group  = Group.new
   end
 
