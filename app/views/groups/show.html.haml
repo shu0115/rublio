@@ -9,7 +9,7 @@
         = @group.name
       %span
         = link_to 'E', edit_group_path(@group), class: 'btn btn-default my_library_group_button', title: 'Edit'
-        = link_to 'D', group_path(@group), method: :delete, class: 'btn btn-default my_library_group_button', title: 'Delete', data: { confirm: '「#{group.name}」グループを削除します。よろしいですか？(紐付くページも削除されます。)' }
+        = link_to 'D', group_path(@group), method: :delete, class: 'btn btn-default my_library_group_button', title: 'Delete', data: { confirm: "「#{@group.name}」グループを削除します。よろしいですか？(紐付くページも削除されます。)" }
         = link_to '+', new_page_path(group_id: @group.id), class: 'btn btn-default my_library_group_button', title: 'New'
 
   - # ページ一覧
