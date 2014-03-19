@@ -5,15 +5,9 @@ class GroupsController < ApplicationController
   def create(group)
     group = Group.new(group.permit!)
     group.user_id = current_user.id
+    group.save!
 
-    if group.save
-      # message = { notice: "グループを作成しました。" }
-      message = { notice: "" }
-    else
-      message = { alert: "グループの作成に失敗しました。" }
-    end
-
-    redirect_to my_library_path, message
+    redirect_to group_path(group)
   end
 
   # 詳細

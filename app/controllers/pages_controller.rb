@@ -26,14 +26,9 @@ class PagesController < ApplicationController
     page = Page.new(page.permit!)
     page.user_id  = current_user.id
     page.group_id = group_id
+    page.save!
 
-    if page.save
-      message = { notice: 'ページを作成しました。' }
-    else
-      message = { alert: 'ページの作成に失敗しました。' }
-    end
-
-    redirect_to page_path(page), message
+    redirect_to page_path(page)
   end
 
   def update(id, page)
