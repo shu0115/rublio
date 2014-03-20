@@ -1,5 +1,5 @@
 %ul.breadcrumb
-  %li= link_to @page.group.try(:name), my_library_path(anchor: "group_#{@page.group_id}")
+  %li= link_to @page.group.try(:name), group_path(@page.group)
   %li= link_to @page.title, page_path(@page)
 
 = link_to t("menu.edit", default: "Edit"), edit_page_path(@page), class: 'btn btn-primary'
