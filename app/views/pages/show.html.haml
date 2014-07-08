@@ -1,3 +1,9 @@
+- # テーブル用スタイル
+%style{ type: 'text/css' }
+  table, th, td { border: 1px #ccc solid; border-collapse: collapse; border-spacing: 0px; }
+  th { text-align: center; padding: 5px 8px; white-space: nowrap; }
+  td { padding: 5px 8px; }
+
 %ul.breadcrumb
   %li= link_to @page.group.try(:name), group_path(@page.group)
   %li= link_to @page.title, page_path(@page)
