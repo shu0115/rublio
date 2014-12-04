@@ -20,6 +20,7 @@ class MyController < ApplicationController
     # 半角スペースor全角スペースで分割する
     words = word.split(/ |　/)
     words.each do |w|
+      # 大文字小文字区別なし検索
       # @pages = Page.where("pages.#{search_type} LIKE :word", word: "%#{w}%")
       @pages = @pages.where(Page.arel_table[search_type].matches("%#{w}%"))
     end
