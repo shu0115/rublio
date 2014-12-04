@@ -15,10 +15,13 @@ class MyController < ApplicationController
       redirect_to my_library_path and return
     end
 
+    @pages = Page.all
+
     # 半角スペースor全角スペースで分割する
     words = word.split(/ |　/)
     words.each do |w|
-      @pages = Page.where("pages.#{search_type} LIKE :word", word: "%#{w}%")
+      # @pages = Page.where("pages.#{search_type} LIKE :word", word: "%#{w}%")
+      @pages = @pages.where(Page.arel_table[search_type].matches("%#{w}%"))
     end
   end
 end
