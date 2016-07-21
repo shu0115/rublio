@@ -13,6 +13,10 @@
  *= require_self
  */
 
+p {
+  margin: 0;
+}
+
 body {
   font-family: Courier, monospace, verdana, arial, helvetica, sans-serif;
   font-size: 14px;
