@@ -9,7 +9,8 @@ Rublio::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  # DEPRECATION WARNING: The configuration option `config.serve_static_assets` has been renamed to `config.serve_static_files` to clarify its role (it merely enables serving everything in the `public` folder and is unrelated to the asset pipeline). The `serve_static_assets` alias will be removed in Rails 5.0. Please migrate your configuration files accordingly. (called from block in <top (required)> at /tmp/build_85919076f1fd512c33c3abf63d9020e5/config/environments/production.rb:24)
+  config.serve_static_files = false
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
