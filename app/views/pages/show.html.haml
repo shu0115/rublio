@@ -13,8 +13,19 @@
 %h1= @page.title
 
 %hr/
+
 %div.target_blank
   = raw markdown(@page.content)
+
+%hr/
+
+%p
+  Created:
+  = @page.created_at.strftime("%Y/%m/%d %H:%M")
+%p
+  Updated:
+  = @page.updated_at.strftime("%Y/%m/%d %H:%M")
+
 %hr/
 
 = link_to t("menu.edit", default: "Edit"), edit_page_path(@page), class: 'btn btn-primary'
