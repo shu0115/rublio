@@ -13,8 +13,8 @@
  *= require_self
  */
 
-p {
-  margin: 0;
+li p {
+  margin: 10px 0 0 0;
 }
 
 body {
