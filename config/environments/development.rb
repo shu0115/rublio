@@ -29,16 +29,16 @@ Rublio::Application.configure do
   config.assets.debug = false
 
   # For LogRotate
-  config.logger = Logger.new('log/development.log', 5, 1*1024*1024)  # 1MB * 5
-  config.logger.formatter = Logger::Formatter.new
+  # config.logger = Logger.new('log/development.log', 5, 1*1024*1024)  # 1MB * 5
+  # config.logger.formatter = Logger::Formatter.new
 end
 
 # callメソッドをオーバーライド
-class Logger
-  class Formatter
-    def call(severity, time, progname, msg)
-      format = "[%s] %5s %s: %s\n"
-      format % ["#{time.strftime('%Y-%m-%d %H:%M:%S')}", severity, progname, msg2str(msg)]
-    end
-  end
-end
+# class Logger
+#   class Formatter
+#     def call(severity, time, progname, msg)
+#       format = "[%s] %5s %s: %s\n"
+#       format % ["#{time.strftime('%Y-%m-%d %H:%M:%S')}", severity, progname, msg2str(msg)]
+#     end
+#   end
+# end
