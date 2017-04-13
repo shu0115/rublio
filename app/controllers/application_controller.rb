@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   # 未ログインリダイレクト
-  before_filter :authorize
+  before_filter :authenticate
 
   # セッション有効期限延長
   before_filter :reset_session_expires
@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   private
 
   # ログイン認証
-  def authorize
+  def authenticate
     # セッション／トップコントローラ以外で
     if params[:controller] != "sessions" and params[:controller] != "top"
       # 未ログインであればルートヘリダイレクト

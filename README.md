@@ -1,6 +1,6 @@
 # Rublio
 
-Rublio is Information Library System.
+Rublio is Web Note Service.
 
 ## Local Setting
 

@@ -1,13 +1,11 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.3.4'
 
-gem 'rails', '4.2.7'
+gem 'rails', '5.0.1'
 
-gem 'sass-rails',   '~> 4.0.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'uglifier', '>= 1.0.3'
-gem 'railties', '>= 4.0.0'
-gem 'activesupport', '>= 4.0.0'
+gem 'sass-rails', '~> 5.0'
+gem 'coffee-rails', '~> 4.2'
+gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails'
 
@@ -24,6 +22,9 @@ gem 'faml'
 gem 'redcarpet'
 gem 'coderay'
 
+# [Ruby 2.4.0 で json gem v1.8.3 をビルドできない問題 - Qiita](http://qiita.com/shinichinomura/items/41e03d7e4fa56841e654)
+gem 'json', github: 'flori/json', branch: 'v1.8'
+
 # Design Template
 gem 'therubyracer', platforms: :ruby
 gem 'twitter-bootswatch-rails'
@@ -35,7 +36,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'erb2haml'
-  gem 'quiet_assets'
+  # gem 'quiet_assets'
   gem 'colorize_unpermitted_parameters'
   gem 'rails-flog-disable-sql-format', require: 'flog'
   gem 'bullet'

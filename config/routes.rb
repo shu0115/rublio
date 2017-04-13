@@ -1,4 +1,4 @@
-Rublio::Application.routes.draw do
+Rails.application.routes.draw do
   resources :groups
   resources :pages
 
@@ -11,4 +11,6 @@ Rublio::Application.routes.draw do
   get "/my/library" => "my#library"
 
   root to: 'top#index'
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
