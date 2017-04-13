@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.3.3'
+ruby '2.3.4'
 
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '5.0.1'
 
 gem 'sass-rails', '~> 5.0'
 gem 'coffee-rails', '~> 4.2'
@@ -21,6 +21,9 @@ gem 'exception_notification'
 gem 'faml'
 gem 'redcarpet'
 gem 'coderay'
+
+# [Ruby 2.4.0 で json gem v1.8.3 をビルドできない問題 - Qiita](http://qiita.com/shinichinomura/items/41e03d7e4fa56841e654)
+gem 'json', github: 'flori/json', branch: 'v1.8'
 
 # Design Template
 gem 'therubyracer', platforms: :ruby
