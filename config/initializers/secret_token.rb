@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Rublio::Application.config.secret_key_base = 'e0fd3182222d76fecec3df08182d3867dd155a602651c1604c94dba1ee7bdaae265773133661177babab07b7cdffb9c03d5f58a4e2a7f2d59cc4308717115ba8'
+Rublio::Application.config.secret_key_base = Settings.secret_key_base
