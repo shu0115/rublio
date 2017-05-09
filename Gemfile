@@ -8,6 +8,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails'
+gem 'turbolinks', '~> 5'
 
 gem 'minimum-omniauth-scaffold'
 gem 'action_args'
