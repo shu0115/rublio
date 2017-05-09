@@ -1,11 +1,6 @@
 class PagesController < ApplicationController
   permits :user_id, :group_id, :title, :content
 
-  def index(group_id)
-    @pages = Page.where(group_id: group_id).mine(current_user).includes(:user, :group)
-    @group = Group.find_by(id: group_id, user_id: current_user.id)
-  end
-
   def show(id)
     @page = Page.includes(:group).mine(current_user).find_by(id: id)
 

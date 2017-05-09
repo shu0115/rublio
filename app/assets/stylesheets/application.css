@@ -31,16 +31,36 @@ textarea {
   margin: 40px 50px 0px 50px;
 }
 
-.top_form .form-control {
-  width: 400px;
+.search_box{
+  width:  600px;
+  margin: 0 auto;
+  margin-top: 20px;
 }
 
 .text_search_box_submit {
   margin: 10px;
 }
 
-.groups .list-group-item {
-  margin: 5px 0px 5px 0px;
+.col-md-8 {
+  padding: 0;
+}
+
+.group_list {
+  margin-top: 20px;
+}
+
+.page_list {
+  margin-top: 20px;
+}
+
+.page_list_item {
+  margin-right: 10px;
+  display: block;
+}
+
+.list-group {
+  width:  600px;
+  margin: 0 auto;
 }
 
 .my_library_group_button {

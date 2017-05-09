@@ -1,17 +1,14 @@
-.container{ style: 'width: 600px;' }
-  .top_form{ style: 'margin: 10px 0px 0px 0px;' }
-    = render partial: 'search_box'
+= render partial: 'search_box'
 
 %br
 
-.container{ style: 'width: 700px' }
-  - # ページ一覧
-  %ul.list-group
-    - @pages.each do |page|
-      %div{ style: 'margin: 0px 10px 10px 0px;' }
-        = link_to page_path(page), style: "display: inline;" do
-          %li.list-group-item.my_library_page_title
-            = page.title
-        %span{ style: 'text-align: right; margin: 0px 0px 0px 10px;' }
-          = link_to "E", edit_page_path(page), class: 'btn btn-default my_library_page_button', title: "Edit"
-          = link_to "D", page_path(page), method: :delete, class: 'btn btn-default my_library_page_button', title: "Delete", data: { confirm: "「#{page.title}」を削除します。よろしいですか？" }
+- # ページ一覧
+%ul.list-group
+  - @pages.each do |page|
+    %div{ style: 'margin: 0px 10px 10px 0px;' }
+      = link_to page_path(page), style: "display: inline;" do
+        %li.list-group-item.my_library_page_title
+          = page.title
+      %span{ style: 'text-align: right; margin: 0px 0px 0px 10px;' }
+        = link_to "E", edit_page_path(page), class: 'btn btn-default my_library_page_button', title: "Edit"
+        = link_to "D", page_path(page), method: :delete, class: 'btn btn-default my_library_page_button', title: "Delete", data: { confirm: "「#{page.title}」を削除します。よろしいですか？" }
