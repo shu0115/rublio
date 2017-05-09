@@ -1,5 +1,3 @@
--# .container{ style: 'width: 700px' }
-/ = form_for(:page, url: page_path(@page), method: :put, class: "form-horizontal" ) do |f|
 = form_for :group, url: group_path(@group.id), method: :put, class: "form-horizontal" do |f|
   %fieldset
     %legend= "#{@group.name}：グループ編集"
