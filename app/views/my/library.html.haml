@@ -1,17 +1,16 @@
-.container{ style: 'width: 600px;' }
-  .top_form{ style: 'margin: 10px 0px 0px 0px;' }
-    = render partial: 'search_box'
+= render partial: 'search_box'
 
-  .top_form
-    %div{ style: 'margin: 30px 0px 30px 0px;' }
-      = form_for :group, url: groups_path, html: { class: 'form-horizontal' } do |f|
-        = f.text_field :name, placeholder: 'Group Name', class: "form-control", style: 'float: left;'
-        %span.text_search_box_submit
-          = f.submit "グループ作成", class: "btn btn-primary", data: { disable_with: "グループ作成" }
+.search_box
+  = form_for :group, url: groups_path, html: { class: 'form-horizontal' } do |f|
+    .col-md-8
+      = f.text_field :name, placeholder: 'Group Name', class: "form-control", style: 'float: left;'
+    %span.text_search_box_submit
+      = f.submit "検索", name: 'search', class: "btn btn-primary", data: { disable_with: "検索" }
+      = f.submit "グループ作成", name: 'create', class: "btn btn-primary", data: { disable_with: "グループ作成" }
 
-  - # グループリンク一覧
-  %ul.list-group.groups
-    - @groups.each do |group|
-      / = link_to "#group_#{group.id}", class: 'list-group-item' do
-      = link_to group_path(group), class: 'list-group-item' do
-        = group.name
+%ul.list-group
+  - @groups.each do |group|
+    .group_list
+      = link_to group_path(group) do
+        %li.list-group-item
+          = group.name

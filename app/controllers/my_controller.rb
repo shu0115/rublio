@@ -1,28 +1,24 @@
 class MyController < ApplicationController
-  # ライブラリ
-  def library(controller, action)
+  def library(controller: nil, action: nil, group_name: nil)
     @active = { "#{controller}_#{action}" => "active" }
-
-    @user   = User.find_by(id: current_user.id)
-    # @groups = Group.where(user_id: current_user.id).includes(:pages).order("groups.name ASC, pages.title ASC").references(:pages)
-    @groups = Group.where(user_id: current_user.id).order("groups.name ASC").references(:pages)
+    @groups = Group.where(user_id: current_user.id).order('groups.name ASC').references(:pages)
+    @groups.where!("groups.name LIKE :name", name: "%#{group_name}%") if group_name.present?
     @group  = Group.new
   end
 
-  # 検索
-  def search(word, search_type)
-    if word.blank? or search_type.blank?
-      redirect_to my_library_path and return
-    end
+  def search(word: nil, search_type: nil, title: nil, content: nil)
+    redirect_to my_library_path and return if word.blank?
 
     @pages = Page.all
 
     # 半角スペースor全角スペースで分割する
-    words = word.split(/ |　/)
-    words.each do |w|
-      # 大文字小文字区別なし検索
-      # @pages = Page.where("pages.#{search_type} LIKE :word", word: "%#{w}%")
-      @pages = @pages.where(Page.arel_table[search_type].matches("%#{w}%"))
+    word.split(/ |　/).each do |w|
+      # 大文字小文字区別なしAND検索
+      if title.present?
+        @pages.where!("pages.title LIKE :word", word: "%#{w}%")
+      elsif content.present?
+        @pages.where!("pages.content LIKE :word", word: "%#{w}%")
+      end
     end
   end
 end

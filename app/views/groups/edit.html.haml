@@ -1,13 +1,11 @@
-.container{ style: 'width: 700px' }
-  / = form_for(:page, url: page_path(@page), method: :put, class: "form-horizontal" ) do |f|
-  = form_for :group, url: group_path(@group.id), method: :put, class: "form-horizontal" do |f|
-    %fieldset
-      %legend= "#{@group.name}：グループ編集"
-    .form-group
-      = f.label :name, class: 'control-label'
-      = f.text_field :name, class: 'form-control'
-    .form-group
-      = f.submit t("menu.update", default: "update"), data: { disable_with: t("menu.update", default: "Update") }, class: 'btn btn-primary'
-  %br/
-  = link_to "Group", group_path(@group), class: 'btn btn-default'
-  = link_to t("menu.top", default: "Top"), my_library_path, class: 'btn btn-default'
+= form_for :group, url: group_path(@group.id), method: :put, class: "form-horizontal" do |f|
+  %fieldset
+    %legend= "#{@group.name}：グループ編集"
+  .form-group
+    = f.label :name, class: 'control-label'
+    = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.submit t("menu.update", default: "update"), data: { disable_with: t("menu.update", default: "Update") }, class: 'btn btn-primary'
+%br/
+= link_to "Group", group_path(@group), class: 'btn btn-default'
+= link_to t("menu.top", default: "Top"), my_library_path, class: 'btn btn-default'
