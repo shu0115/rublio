@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   has_many :pages
-  # has_many :group_members, :dependent => :destroy
   has_many :groups
+
+  def https_image
+    self.image.gsub('http://', 'https://')
+  end
 
   # auth情報更新
   def auth_update(auth)
