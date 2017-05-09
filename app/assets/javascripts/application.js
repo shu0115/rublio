@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require cerulean/loader
 //= require cerulean/bootswatch
+//= require turbolinks
 
 $(function () {
   // aタグにtarget=blank指定
