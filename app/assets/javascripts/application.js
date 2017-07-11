@@ -16,7 +16,7 @@
 //= require cerulean/bootswatch
 //= require turbolinks
 
-$(function () {
+document.addEventListener('turbolinks:load', function() {
   // aタグにtarget=blank指定
   $('.target_blank a').attr('target' , '_blank');
-});
+})
