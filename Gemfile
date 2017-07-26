@@ -20,6 +20,8 @@ gem 'tapp-awesome_print'
 gem 'exception_notification'
 # gem 'haml-rails'
 gem 'faml'
+
+# Markdown
 gem 'redcarpet'
 gem 'coderay'
 

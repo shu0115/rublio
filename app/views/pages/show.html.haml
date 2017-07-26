@@ -12,12 +12,12 @@
 
 %h1= @page.title
 
-%hr/
+%hr
 
-%div.target_blank
+%div.target_blank_link
   = raw markdown(@page.content)
 
-%hr/
+%hr
 
 %div
   Created:
@@ -26,11 +26,13 @@
   Updated:
   = @page.updated_at.strftime("%Y年%m月%d日 %H:%M")
 
-%hr/
+%hr
 
 = link_to t("menu.edit", default: "Edit"), edit_page_path(@page), class: 'btn btn-primary'
 = link_to t( "menu.destroy", default: "Delete"), page_path(@page), method: :delete, data: { confirm: "「#{@page.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
-%br/
-%br/
+
+%br
+%br
+
 = link_to "Group", group_path(@page.group_id), class: 'btn btn-default'
 = link_to t("menu.top", default: "Top"), my_library_path, class: 'btn btn-default'

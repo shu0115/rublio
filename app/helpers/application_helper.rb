@@ -1,5 +1,5 @@
 module ApplicationHelper
-class HTMLwithCoderay < Redcarpet::Render::HTML
+  class HTMLwithCoderay < Redcarpet::Render::HTML
     def block_code(code, language)
       case language.to_s
       when 'rb'
@@ -18,14 +18,18 @@ class HTMLwithCoderay < Redcarpet::Render::HTML
   end
 
   def markdown(text)
-    html_render = HTMLwithCoderay.new(filter_html: true, hard_wrap: true)
-    options = {
-      autolink: true,
-      space_after_headers: true,
-      fenced_code_blocks: true,
-      tables: true,
+    coderay_options = {
+      hard_wrap:   true,
+      filter_html: false,
     }
-    markdown    = Redcarpet::Markdown.new(html_render, options)
+
+    redcarpet_options = {
+      autolink:           true,
+      tables:             true,
+      fenced_code_blocks: true,
+    }
+
+    markdown = Redcarpet::Markdown.new(HTMLwithCoderay.new(coderay_options), redcarpet_options)
     markdown.render(text)
   end
 end
