@@ -18,5 +18,5 @@
 
 document.addEventListener('turbolinks:load', function() {
   // aタグにtarget=blank指定
-  $('.target_blank a').attr('target' , '_blank');
+  $('.target_blank_link a').attr('target', '_blank');
 })
