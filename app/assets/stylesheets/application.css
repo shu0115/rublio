@@ -81,3 +81,7 @@ textarea {
   width: 500px;
   float: left;
 }
+
+table {
+  margin-bottom: 10px;
+}
