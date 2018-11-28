@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.4.1'
+ruby '2.5.3'
 
-gem 'rails', '5.1.0'
+gem 'rails', '5.2.1.1'
 
 gem 'sass-rails', '~> 5.0'
 gem 'coffee-rails', '~> 4.2'
@@ -49,6 +49,9 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
+
+  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 1.0'
 end
 
 group :production do
