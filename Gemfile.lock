@@ -371,7 +371,7 @@ DEPENDENCIES
   pg
   pry-rails
   puma
-  rails (~> 5.2.0)
+  rails (= 5.2.1.1)
   rails_12factor
   rails_config
   redcarpet
