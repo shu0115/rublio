@@ -49,6 +49,9 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
+
+  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 1.0'
 end
 
 group :production do

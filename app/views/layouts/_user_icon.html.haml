@@ -1,1 +1,4 @@
-= link_to_if user.screen_name.present?, image_tag(user.https_image, size: '18x18', class: 'margin_minus2' ), "#{Settings.provider_page}#{user.screen_name}", target: '_blank'
+- if user.image.present?
+  = link_to_if user.screen_name.present?, image_tag(user.https_image, size: '18x18', class: 'margin_minus2' ), "#{Settings.provider_page}#{user.screen_name}", target: '_blank'
+- elsif user.email.present?
+  = link_to user.email, my_library_path

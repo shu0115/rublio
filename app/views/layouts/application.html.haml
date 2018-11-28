@@ -16,13 +16,19 @@
           - unless session[:user_id].blank?
             %li= render partial: '/layouts/user_icon', locals: { user: current_user }
             %li{ class: (@active.blank? ? '' : @active['my_library']) }
-              = link_to current_user.screen_name, my_library_path
+              = link_to 'Library', my_library_path
             %li= link_to "Logout", logout_path
           - else
             %li= link_to "Login", "/auth/#{Settings.provider}"
     .container{ style: 'margin-top: 60px;' }
-      = simple_format( flash[:notice], style: "color: green;" ) unless flash[:notice].blank?
-      = simple_format( flash[:alert], style: "color: red;" ) unless flash[:alert].blank?
+      - if flash[:notice].present?
+        .alert.alert-success
+          = simple_format flash[:notice]
+
+      - if flash[:alert].present?
+        .alert.alert-danger
+          = simple_format flash[:alert]
+
       = yield
       %br/
       %br/

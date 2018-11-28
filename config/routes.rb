@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :groups
   resources :pages
 
+  post 'top/send_access_token',          to: 'top#send_access_token',   as: :send_access_token
+  get  'top/verify_access_token/:token', to: 'top#verify_access_token', as: :verify_access_token
+
   # For OmniAuth
   get "/auth/:provider/callback" => "sessions#callback"
   get "/auth/failure"            => "sessions#failure"
