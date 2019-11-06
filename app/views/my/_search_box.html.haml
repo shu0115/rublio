@@ -1,7 +1,7 @@
 .search_box
   = form_tag my_search_path, method: 'get', class: 'form-horizontal'  do
-    .col-md-8
-      = text_field_tag :word, params[:word], class: 'form-control', style: 'float: left;', placeholder: 'Page Title'
-    %span.text_search_box_submit
+    .col-sm-8
+      = text_field_tag :word, params[:word], placeholder: 'Page Title', class: 'form-control'
+    .col
       = submit_tag 'タイトル検索', name: 'title', class: 'btn btn-primary', data: { disable_with: 'タイトル検索' }
       = submit_tag '内容検索', name: 'content', class: 'btn btn-primary', data: { disable_with: '内容検索' }

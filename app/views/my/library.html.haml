@@ -1,10 +1,12 @@
+
 = render partial: 'search_box'
 
 .search_box
   = form_for :group, url: groups_path, html: { class: 'form-horizontal' } do |f|
-    .col-md-8
-      = f.text_field :name, value: @group_name, placeholder: 'Group Name', class: "form-control", style: 'float: left;'
-    %span.text_search_box_submit
+    .col-sm-8
+      = f.text_field :name, value: @group_name, placeholder: 'Group Name', class: "form-control"
+    -# %span.text_search_box_submit
+    .col
       = f.submit "検索", name: 'search', class: "btn btn-primary", data: { disable_with: "検索" }
       = f.submit "グループ作成", name: 'create', class: "btn btn-primary", data: { disable_with: "グループ作成" }
 
