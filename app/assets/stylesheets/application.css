@@ -18,13 +18,17 @@ li p {
 }
 
 body {
-  font-family: Courier, monospace, verdana, arial, helvetica, sans-serif;
+  font-family: 'Courier', 'verdana', 'arial', 'helvetica', monospace, sans-serif;
   font-size: 14px;
 }
 
 textarea {
-  font-family: Courier;
+  font-family: 'Osaka-Mono', 'Courier', monospace;
   font-size: 14px;
+}
+
+pre {
+  font-family: 'Osaka-Mono', 'Courier', monospace;
 }
 
 .page_top_margin {

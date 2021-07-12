@@ -1,4 +1,4 @@
-class RenameColumnShowRange < ActiveRecord::Migration
+class RenameColumnShowRange < ActiveRecord::Migration[5.2]
   def up
     rename_column :pages, :show_range, :permission
   end

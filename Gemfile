@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
-ruby '2.5.3'
+ruby '3.0.2'
 
-gem 'rails', '5.2.3'
+gem 'rails', '6.1.4'
 
-gem 'sass-rails', '~> 5.0'
-gem 'coffee-rails', '~> 4.2'
-gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
 
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
@@ -18,15 +18,17 @@ gem 'kaminari'
 gem 'rails_config'
 gem 'tapp-awesome_print'
 gem 'exception_notification'
-# gem 'haml-rails'
-gem 'faml'
+gem 'haml-rails'
+# gem 'faml'
+gem 'rexml'
 
 # Markdown
 gem 'redcarpet'
 gem 'coderay'
 
-# [Ruby 2.4.0 で json gem v1.8.3 をビルドできない問題 - Qiita](http://qiita.com/shinichinomura/items/41e03d7e4fa56841e654)
-gem 'json', github: 'flori/json', branch: 'v1.8'
+## 2021/07/12「TypeError - incompatible marshal file format (can't be read)」エラー対処のためコメントアウト
+# # [Ruby 2.4.0 で json gem v1.8.3 をビルドできない問題 - Qiita](http://qiita.com/shinichinomura/items/41e03d7e4fa56841e654)
+# gem 'json', github: 'flori/json', branch: 'v1.8'
 
 # Design Template
 gem 'therubyracer', platforms: :ruby
