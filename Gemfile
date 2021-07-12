@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
-ruby '2.5.3'
+ruby '3.0.2'
 
-gem 'rails', '5.2.3'
+gem 'rails', '6.1.4'
 
-gem 'sass-rails', '~> 5.0'
-gem 'coffee-rails', '~> 4.2'
-gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
 
 gem 'jquery-rails'
-gem 'turbolinks', '~> 5'
+gem 'turbolinks'
 
 gem 'minimum-omniauth-scaffold'
 gem 'action_args'
@@ -18,8 +18,8 @@ gem 'kaminari'
 gem 'rails_config'
 gem 'tapp-awesome_print'
 gem 'exception_notification'
-# gem 'haml-rails'
-gem 'faml'
+gem 'haml-rails'
+# gem 'faml'
 
 # Markdown
 gem 'redcarpet'
